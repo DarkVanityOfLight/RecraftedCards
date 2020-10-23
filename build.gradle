@@ -1,0 +1,33 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.20-M1'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+    id 'maven-publish'
+    id "org.hibernate.build.maven-repo-auth" version "3.0.4"
+    id "ru.endlesscode.bukkitgradle" version "0.8.2"
+}
+
+group 'com.recraftedcivilizations'
+version '1.0-SNAPSHOT'
+
+repositories {
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    mavenCentral()
+    spigot()
+    maven {
+        url 'https://repo.repsy.io/mvn/darkvanityoflight/darkmods'
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    compile 'org.junit.jupiter:junit-jupiter:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    compileOnly spigotApi()
+    compileOnly 'com.github.darkvanityoflight:RecraftedCore:2.+'
+}
