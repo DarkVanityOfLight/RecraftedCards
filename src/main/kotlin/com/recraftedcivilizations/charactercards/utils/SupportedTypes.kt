@@ -10,6 +10,15 @@ enum class SupportedTypes {
 
     // Numbers
     BYTE{
+        override fun convert(x: Any): Byte? {
+            if(x is Number){
+                with(x as Number){
+                    return x.toByte()
+                }
+            }
+            return null
+        }
+
         override fun cast(x: Any): Byte? {
             x.tryCast<Byte> {
                 return x as Byte
@@ -21,6 +30,15 @@ enum class SupportedTypes {
     },
 
     SHORT{
+        override fun convert(x: Any): Short? {
+            if(x is Number){
+                with(x as Number){
+                    return x.toShort()
+                }
+            }
+            return null
+        }
+
         override fun cast(x: Any): Any? {
             x.tryCast<Short> {
                 return x as Short
@@ -32,6 +50,15 @@ enum class SupportedTypes {
     },
 
     INT{
+        override fun convert(x: Any): Int? {
+            if(x is Number){
+                with(x as Number){
+                    return x.toInt()
+                }
+            }
+            return null
+        }
+
         override fun cast(x : Any): Int?{
            x.tryCast<Int> {
                return x as Int
@@ -43,6 +70,14 @@ enum class SupportedTypes {
     },
 
     LONG{
+        override fun convert(x: Any): Long? {
+            if(x is Number){
+                with(x as Number){
+                    return x.toLong()
+                }
+            }
+            return null
+        }
 
         override fun cast(x: Any): Long? {
             x.tryCast<Long> {
@@ -55,6 +90,15 @@ enum class SupportedTypes {
     },
 
     FLOAT{
+        override fun convert(x: Any): Float? {
+            if(x is Number){
+                with(x as Number){
+                    return x.toFloat()
+                }
+            }
+            return null
+        }
+
         override fun cast(x: Any): Float? {
             x.tryCast<Float> {
                 return x as Float
@@ -66,6 +110,14 @@ enum class SupportedTypes {
     },
 
     DOUBLE{
+        override fun convert(x: Any): Double? {
+            if(x is Number){
+                with(x as Number){
+                    return x.toDouble()
+                }
+            }
+            return null
+        }
         override fun cast(x: Any): Double? {
             x.tryCast<Double> {
                 return x as Double
@@ -78,6 +130,9 @@ enum class SupportedTypes {
 
     // Boolean
     BOOLEAN{
+        override fun convert(x: Any): Any? {
+            return null
+        }
         override fun cast(x: Any): Boolean? {
             x.tryCast<Boolean> {
                 return x as Boolean
@@ -89,6 +144,9 @@ enum class SupportedTypes {
     },
 
     STRING{
+        override fun convert(x: Any): Any? {
+            return null
+        }
         override fun cast(x: Any): String? {
             x.tryCast<String> {
                 return x as String
@@ -102,4 +160,5 @@ enum class SupportedTypes {
 
     abstract fun cast(x: Any) : Any?
     abstract val exampleVal : Any
+    abstract fun convert(x: Any) : Any?
 }

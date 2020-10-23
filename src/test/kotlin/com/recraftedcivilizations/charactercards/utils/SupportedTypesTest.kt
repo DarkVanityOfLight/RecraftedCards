@@ -25,4 +25,15 @@ internal class SupportedTypesTest{
         }
         return mutableSet
     }
+
+    @TestFactory
+    fun convertTestFactory(): Collection<DynamicTest>{
+        val mutableSet: MutableSet<DynamicTest> = emptySet<DynamicTest>().toMutableSet()
+
+        for (type in SupportedTypes.values()){
+            
+        }
+
+        return mutableSet
+    }
 }
