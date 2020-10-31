@@ -1,5 +1,9 @@
 package com.recraftedcivilizations.charactercards.cards
 
+/**
+ * @author DarkVanityOfLight
+ */
+
 import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 
 
@@ -7,7 +11,10 @@ abstract class Card : IAmACard{
     final override var fieldMap: Map<String, SupportedTypes>
     final override var valueMap: Map<String, Any?>
 
-
+    /**
+     * @param fieldMap A map with all fields the card should have
+     * @param valueMap A map with all values to initialize the card
+     */
     constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any>){
         val res = validateMaps(fieldMap, valueMap)
         if(!res.first){
@@ -18,6 +25,9 @@ abstract class Card : IAmACard{
         }
     }
 
+    /**
+     * @param fieldMap A map with all fields the card should have
+     */
     constructor(fieldMap: Map<String, SupportedTypes>){
 
         val valueMap = emptyMap<String, Any?>().toMutableMap()
