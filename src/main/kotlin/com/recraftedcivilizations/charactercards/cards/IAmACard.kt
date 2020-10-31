@@ -12,7 +12,7 @@ interface IAmACard : Serializable {
 
     fun getFields() : Map<String, SupportedTypes>
     fun getFieldValue(key : String) : Any?
-    fun getFieldType(key : SupportedTypes)
+    fun getFieldType(key : String): SupportedTypes?
     fun getChatOutputRepresentation() : String
     fun getGUIOutputRepresentation() : Inventory
     fun display(player: Player)
