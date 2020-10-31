@@ -28,21 +28,25 @@ abstract class Card : IAmACard{
          * @param valueMap Stores the fields from the character card
          * @return         A Pair of a boolean that indicates if the map is valid and an error message if the map is not
          */
-        fun validateMaps(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any>) : Pair<Boolean, String?>{
+        fun validateMaps(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any?>) : Pair<Boolean, String?>{
             for(key in valueMap.keys){
                 val type: SupportedTypes = fieldMap[key] ?: return Pair(false, FIELD_DOES_NOT_EXIST)
                 val value = valueMap[key]
-                value!!
 
-                val supportedType = SupportedTypes.valueOf(value::class.simpleName!!.toUpperCase())
-                if (supportedType != type){
-                    if(type.convert(supportedType) != null){
-                        continue
-                    }else{
+                if (value != null){
+                    try{
+                        val supportedType = SupportedTypes.valueOf(value::class.simpleName!!.toUpperCase())
+                        if (supportedType != type){
+                            if(type.convert(supportedType) != null){
+                                continue
+                            }else{
+                                return Pair(false, FIELD_TYPE_OTHER_THEN_VALUE_TYPE)
+                            }
+                        }
+                    }catch (e: IllegalArgumentException){
                         return Pair(false, FIELD_TYPE_OTHER_THEN_VALUE_TYPE)
                     }
-                }
-
+                }else continue
             }
 
             return Pair(true, null)
