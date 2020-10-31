@@ -2,6 +2,7 @@ package com.recraftedcivilizations.charactercards.cards
 
 import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.entity.Player
+import org.bukkit.inventory.Inventory
 import java.io.Serializable
 
 interface IAmACard : Serializable {
@@ -11,6 +12,8 @@ interface IAmACard : Serializable {
 
     fun getFields() : Map<String, SupportedTypes>
     fun getFieldValue(key : String) : Any?
-    fun getOutputRepresentation() : Any
+    fun getFieldType(key : SupportedTypes)
+    fun getChatOutputRepresentation() : String
+    fun getGUIOutputRepresentation() : Inventory
     fun display(player: Player)
 }
