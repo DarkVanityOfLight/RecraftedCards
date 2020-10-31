@@ -12,7 +12,7 @@ import java.io.Serializable
 
 interface IAmACard : Serializable {
     var fieldMap: Map<String, SupportedTypes>
-    var valueMap: Map<String, Any>
+    var valueMap: Map<String, Any?>
 
 
     /**
