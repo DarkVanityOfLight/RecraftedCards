@@ -4,6 +4,9 @@ import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 
 
 abstract class Card : IAmACard{
+    final override var fieldMap: Map<String, SupportedTypes>
+    final override var valueMap: Map<String, Any?>
+
 
     constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any>){
         val res = validateMaps(fieldMap, valueMap)
@@ -15,7 +18,24 @@ abstract class Card : IAmACard{
         }
     }
 
-    constructor(fieldMap: Map<String, SupportedTypes>)
+    constructor(fieldMap: Map<String, SupportedTypes>){
+
+        val valueMap = emptyMap<String, Any?>().toMutableMap()
+        for(key in fieldMap.keys){
+            valueMap[key] =  null
+        }
+
+        val res = validateMaps(fieldMap, valueMap)
+        if(!res.first){
+            throw IllegalArgumentException(res.second)
+        }else{
+            this.fieldMap = fieldMap
+            this.valueMap = valueMap
+        }
+
+
+    }
+
 
 
     companion object{
