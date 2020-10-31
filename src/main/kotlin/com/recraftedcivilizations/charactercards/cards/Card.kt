@@ -59,6 +59,14 @@ abstract class Card : IAmACard{
         return fieldMap
     }
 
+    override fun setFieldValue(key: String, value: Any) {
+        if(key in fieldMap.keys){
+            if(fieldMap[key]!!.cast(value) != null || fieldMap[key]!!.convert(value) != null){
+                valueMap[key] = value
+            }
+        }
+    }
+
     companion object{
         const val FIELD_DOES_NOT_EXIST = "A field parsed is not declared in the config"
         const val FIELD_TYPE_OTHER_THEN_VALUE_TYPE = "A parsed value differs from the expected field type and could not be converted"
