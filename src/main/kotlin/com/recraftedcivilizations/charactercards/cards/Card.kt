@@ -37,6 +37,17 @@ abstract class Card : IAmACard{
     }
 
 
+    override fun getFieldType(key: String): SupportedTypes?{
+        return fieldMap[key]
+    }
+
+    override fun getFieldValue(key: String): Any? {
+        return valueMap[key]
+    }
+
+    override fun getFields(): Map<String, SupportedTypes> {
+        return fieldMap
+    }
 
     companion object{
         const val FIELD_DOES_NOT_EXIST = "A field parsed is not declared in the config"
