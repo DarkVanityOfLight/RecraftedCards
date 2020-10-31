@@ -27,6 +27,12 @@ interface IAmACard : Serializable {
     fun getFieldValue(key : String) : Any?
 
     /**
+     * @param key The field to set
+     * @param value The value to set
+     */
+    fun setFieldValue(key: String, value: Any)
+
+    /**
      * @param key The key for the field you want to have
      * @return    Returns the type of the field or null
      */
