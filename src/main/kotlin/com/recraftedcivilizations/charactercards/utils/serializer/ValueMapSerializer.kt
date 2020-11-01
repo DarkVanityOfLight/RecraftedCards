@@ -19,8 +19,11 @@ class ValueMapSerializer {
             valueSerialization = valueSerialization.plus("\"$key\"")
             valueSerialization = valueSerialization.plus(":")
 
-            if(value is Number) valueSerialization = valueSerialization.plus(value.toString())
-            else valueSerialization = valueSerialization.plus("\"${value}\",")
+            valueSerialization = when (value) {
+                is Number -> valueSerialization.plus("${value},")
+                null -> valueSerialization.plus("null,")
+                else -> valueSerialization.plus("\"${value}\",")
+            }
 
         }
         var string : String= valueSerialization.joinToString(" ")
