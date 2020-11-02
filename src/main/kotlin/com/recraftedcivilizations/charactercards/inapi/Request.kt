@@ -1,4 +1,4 @@
-package com.recraftedcivilizations.charactercards.enjinapi
+package com.recraftedcivilizations.charactercards.inapi
 
 /**
  * Represents a request that can be send to an api

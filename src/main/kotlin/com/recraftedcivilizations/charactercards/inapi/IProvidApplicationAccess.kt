@@ -1,4 +1,4 @@
-package com.recraftedcivilizations.charactercards.enjinapi
+package com.recraftedcivilizations.charactercards.inapi
 
 interface IProvidApplicationAccess : IEndPoint, IRequestData {
 }
