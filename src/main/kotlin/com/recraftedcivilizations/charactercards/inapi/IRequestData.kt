@@ -1,5 +1,6 @@
 package com.recraftedcivilizations.charactercards.inapi
 
+import com.recraftedcivilizations.charactercards.inapi.enjin.Response
 
 /**
  * Represents an object that can request data
@@ -14,5 +15,5 @@ interface IRequestData {
      * @param request The Request object to be sent
      * @return An Response object containing the info
      */
-    suspend fun request(request: Request): Response
+    suspend fun request(request: IRequest): Response
 }

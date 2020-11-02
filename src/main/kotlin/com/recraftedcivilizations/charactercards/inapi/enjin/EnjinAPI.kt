@@ -4,9 +4,8 @@ package com.recraftedcivilizations.charactercards.inapi.enjin
  * @author DarkVanityOfLight
  */
 
+import com.recraftedcivilizations.charactercards.inapi.IRequest
 import com.recraftedcivilizations.charactercards.inapi.IProvidApplicationAccess
-import com.recraftedcivilizations.charactercards.inapi.Request
-import com.recraftedcivilizations.charactercards.inapi.Response
 import io.ktor.client.*
 import io.ktor.client.request.*
 import java.net.URL
@@ -16,8 +15,9 @@ class EnjinAPI(override val url: URL) : IProvidApplicationAccess {
     private val client = HttpClient()
 
 
-    override suspend fun request(request: Request): Response {
+    override suspend fun request(request: IRequest): Response {
 
+        val request = request as Request
         // If no jsonrpc version is defined, define it
         if(request.jsonrpc == null){
             request.jsonrpc = jsonRpc
