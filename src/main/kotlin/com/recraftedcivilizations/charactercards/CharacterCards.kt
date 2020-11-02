@@ -5,7 +5,7 @@ import com.github.darkvanityoflight.recraftedcore.configparser.ARecraftedConfigP
 import com.recraftedcivilizations.charactercards.parser.ConfigParser
 
 class CharacterCards : ARecraftedPlugin() {
-    val configParser : ARecraftedConfigParser = ConfigParser(config)
+    val configParser : ConfigParser = ConfigParser(config)
 
     override fun onEnable() {
         super.onEnable()
@@ -16,6 +16,6 @@ class CharacterCards : ARecraftedPlugin() {
     }
 
     companion object{
-        var instance : ARecraftedPlugin? = null
+        var instance : CharacterCards? = null
     }
 }
