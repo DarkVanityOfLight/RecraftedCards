@@ -8,8 +8,8 @@ internal class RequestTest{
     @Test
     fun shouldSerialize(){
 
-        val toSerialze : Request = Request("foo", "bar")
+        val toSerialze : Request = Request("foo", "bar", mapOf(Pair("Foo", "Bar")))
 
-        assertEquals( "{\"id\":\"foo\",\"methode\":\"bar\"}" ,toSerialze.serialize())
+        assertEquals( "{\"id\":\"foo\",\"methode\":\"bar\",\"params\":{\"Foo\":\"Bar\"}}" ,toSerialze.serialize())
     }
 }

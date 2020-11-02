@@ -10,7 +10,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 @Serializable
-data class Request(val id: String, val methode: String){
+data class Request(val id: String, val methode: String, val params: Map<String, String>){
 
     /**
      * Serialize the object to an json object as String
