@@ -18,10 +18,10 @@ jobs:
         run: ./gradlew test
       - name: Get version
         run: |
-          cat build.gradle | while read line; do
-            if [[$line =~ ^version .+$]] 
+          while read line; do
+            if [["$line" =~ ^version .+$]] 
             then
-              echo "VERSION=${line:8}" >> $GITHUB_ENV
+              echo "version=${line:8}" >> $GITHUB_ENV
               break
             fi
           done
