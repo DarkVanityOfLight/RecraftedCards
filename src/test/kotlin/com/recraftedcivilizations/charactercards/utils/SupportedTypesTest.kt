@@ -1,6 +1,5 @@
 package com.recraftedcivilizations.charactercards.utils
 
-import jdk.nashorn.internal.ir.annotations.Ignore
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.TestFactory
 
@@ -27,7 +26,6 @@ internal class SupportedTypesTest{
         return mutableSet
     }
 
-    @Ignore
     @TestFactory
     fun convertTestFactory(): Collection<DynamicTest>{
         val mutableSet: MutableSet<DynamicTest> = emptySet<DynamicTest>().toMutableSet()
