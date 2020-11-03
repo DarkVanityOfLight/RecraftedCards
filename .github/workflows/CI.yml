@@ -19,9 +19,9 @@ jobs:
       - name: Get version
         run: |
           while read line; do
-            if [["$line" =~ ^version .+$]] 
+            if [[ $line =~ ^version\ .+ ]]
             then
-              echo "version=${line:8}" >> $GITHUB_ENV
+              echo "VERSION=${line:8}" >> $GITHUB_ENV
               break
             fi
           done
