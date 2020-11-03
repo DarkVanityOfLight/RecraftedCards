@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate the gradle wrapper
+        run: ./gradlew wrapper
+      - name: Run tests
+        run: ./gradlew test
+      - name: Get version
+        run: |
+          for line in $(build.gradle); do
+            if [[line =~ ^version .+$]] then
+              echo "VERSION=${line:8}" >> $GITHUB_ENV
+              break
+            fi
+          done
+        
+      - name: Push tests to WebPage
+        uses: crykn/copy_folder_to_another_repo_action@v1.0.5b
+        with:
+          source_folder: build/reports/tests/test-${{ VERSION }}
+          destination_repo: RecraftedCivilizations
+          # Directory to push the folder contents to
+          destination_folder: tests
+          # Email for the git commit
+          user_email: recrafted-ci@recrafted-ci.com
+          # GitHub username for the commit
+          user_name: RecraftedCi
+          commit_msg: "feat: Upload new test results for version: ${{ VERSION }}"
+        
