@@ -31,13 +31,10 @@ jobs:
       - name: Push tests to WebPage
         uses: crykn/copy_folder_to_another_repo_action@v1.0.5b
         with:
-          source_folder: build/reports/tests/test-${{ VERSION }}
-          destination_repo: RecraftedCivilizations
-          # Directory to push the folder contents to
-          destination_folder: tests
-          # Email for the git commit
-          user_email: recrafted-ci@recrafted-ci.com
-          # GitHub username for the commit
-          user_name: RecraftedCi
-          commit_msg: "feat: Upload new test results for version: ${{ VERSION }}"
-        
+          source-directory: build/reports/tests/test
+          destination-github-username: RecraftedCivilizations
+          destination-repository-name: RecraftedCivilizations.github.io
+          username: RecraftedCI
+          user-email: recrafted-ci@recrafted-ci.com
+          commit-message: "chore: Upload new test results for version: ${{ env.VERSION }}"
+          destination-folder: "Projects/${{ github.repository }}"
