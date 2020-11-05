@@ -28,8 +28,11 @@ jobs:
             fi
           done
         
-      - name: Push tests to WebPage
-        uses: crykn/copy_folder_to_another_repo_action@v1.0.5b
+
+      - name: Deploy to a Git Repo
+        uses: RecraftedCivilizations/github-action-push-to-another-repository@master
+        env: 
+          PRIVATE_KEY: secrets.CI_DEPLOY_PRIVATE
         with:
           source-directory: build/reports/tests/test
           destination-github-username: RecraftedCivilizations
