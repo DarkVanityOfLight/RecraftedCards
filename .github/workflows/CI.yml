@@ -35,7 +35,17 @@ jobs:
                 path: ./temp
             
             - name: Copie the files
-              run: cp -r build/reports/tests/test ./temp/Projects/${{ github.REPOSITORY }}/tests/$VERSION
+              run: |
+                
+                if [ -d ./temp/Projects/${{ github.REPOSITORY}}/tests/$VERSION  ]
+                then
+                        echo "Deleting old tests for the same version"
+                        rm -rf ./temp/Projects/${{ github.REPOSITORY}}/tests/$VERSION
+                fi    
+                mkdir -p ./temp/Projects/${{ github.REPOSITORY }}/tests/$VERSION
+                    
+                cp -r build/reports/tests/test ./temp/Projects/${{ github.REPOSITORY }}/tests/$VERSION
+                    
             
             - name: Push the changes
               working-directory: ./temp
