@@ -34,6 +34,9 @@ jobs:
                 ssh-key: ${{ secrets.SSH_KEY }}
                 path: ./temp
             
+            - name: Copie the files
+              run: cp build/reports/tests/test ./temp/Projects/${{ GITHUB_REPOSITORY }}/tests/$VERSION
+            
             - name: Push the changes
               working-directory: ./temp
               run: |
