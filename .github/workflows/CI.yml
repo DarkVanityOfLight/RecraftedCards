@@ -26,7 +26,8 @@ jobs:
                         VERSION=${VERSION::-1}
                     fi
                 done < build.gradle
-                
+                echo "VERSION=$VERSION" >> $GITHUB_ENV
+
             - name: Checkout destination repo
               uses: actions/Checkout@v2
               with:
