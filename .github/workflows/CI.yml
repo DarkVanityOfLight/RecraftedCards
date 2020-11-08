@@ -14,7 +14,7 @@ jobs:
             - name: Install gradle wrapper
               run: ./gradlew wrapper
               
-            - name: Run the rests
+            - name: Run the tests
               run: ./gradlew test
               
             - name: Get the version
