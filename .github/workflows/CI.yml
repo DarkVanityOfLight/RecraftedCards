@@ -34,9 +34,9 @@ jobs:
         env:
           API_TOKEN_GIHUB=${{ secrets.api_token_github }}
         with:
-         target-repository: RecraftedCivilizations/RecraftedVivilizations.github.io
-	 src-directory: build/reports/tests/test
-	 target-directory: Projects/${{ github.repository }}
-	 username: RecraftedCI
-	 email: recrafted-ci@recrafted-ci.com
-	 commit-message: "chore: Upload new test results for version: ${{ env.VERSION }}"
+          target-repository: RecraftedCivilizations/RecraftedVivilizations.github.io
+          src-directory: build/reports/tests/test
+          target-directory: Projects/${{ github.repository }}
+          username: RecraftedCI
+          email: recrafted-ci@recrafted-ci.com
+          commit-message: "chore: Upload new test results for version: ${{ env.VERSION }}"
