@@ -56,3 +56,9 @@ jobs:
                 git add .
                 git commit -m "feat: Upload test results for: $VERSION"
                 git push
+
+            - name: Upload test results
+              uses: actions/upload-artifact@master
+              with:
+                  name: test-results
+                  path: build/reports/tests/test
