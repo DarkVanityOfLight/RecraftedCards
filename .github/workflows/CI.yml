@@ -20,9 +20,9 @@ jobs:
             - name: Get the version
               run: |
                 while read line; do
-                    if [[ $line =~ "^version .+" ]]
+                    if [[ $line =~ ^version .+ ]]
                     then
-                        VERSION=${line:8}
+                        VERSION=${line:7}
                         VERSION=${VERSION::-1}
                     fi
                 done < build.gradle
