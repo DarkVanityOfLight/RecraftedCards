@@ -1,0 +1,44 @@
+name: Ci
+
+on: push
+
+jobs:
+    Test:
+        name: Run tests
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: Checkout code
+              uses: actions/Checkout@v2
+              
+            - name: Install gradle wrapper
+              run: ./gradlew wrapper
+              
+            - name: Run the rests
+              run: ./gradlew test
+              
+            - name: Get the version
+              run: |
+                while read line; do
+                    if [[ $line ~= "^version .+" ]]
+                    then
+                        VERSION=${line:8}
+                        VERSION=${VERSION::-1}
+                    fi
+                done < build.gradle
+                
+            - name: Checkout destination repo
+              uses: actions/Checkout@v2
+              with:
+                repository: RecraftedCivilizations/RecraftedCivilizations.github.io
+                ssh-key: ${{ secrets.SSH_KEY }}
+                path: /tmp/target
+            
+            - name: Push the changes
+              run: |
+                git config --global user.name "RecraftedCivilizationsCI"
+                git config --global user.email "recrafted-ci@recraftedcivilizations.com"
+                cd /tmp/target
+                git add .
+                git commit -m "feat: Upload test results for: $VERSION"
+                git push
