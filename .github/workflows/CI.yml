@@ -32,13 +32,15 @@ jobs:
               with:
                 repository: RecraftedCivilizations/RecraftedCivilizations.github.io
                 ssh-key: ${{ secrets.SSH_KEY }}
-                path: /tmp/target
+                path: /home/runner/work/target
             
             - name: Push the changes
               run: |
+                END_PATH=$(pwd)
                 git config --global user.name "RecraftedCivilizationsCI"
                 git config --global user.email "recrafted-ci@recraftedcivilizations.com"
-                cd /tmp/target
+                cd /home/runner/work/target
                 git add .
                 git commit -m "feat: Upload test results for: $VERSION"
                 git push
+                cd "$END_PATH"
