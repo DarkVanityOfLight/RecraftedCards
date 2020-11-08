@@ -35,7 +35,7 @@ jobs:
                 path: ./temp
             
             - name: Copie the files
-              run: cp build/reports/tests/test ./temp/Projects/${{ github.REPOSITORY }}/tests/$VERSION
+              run: cp -r build/reports/tests/test ./temp/Projects/${{ github.REPOSITORY }}/tests/$VERSION
             
             - name: Push the changes
               working-directory: ./temp
