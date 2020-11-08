@@ -30,16 +30,13 @@ jobs:
         
 
       - name: Deploy to a Git Repo
-        uses: RecraftedCivilizations/github-action-push-to-another-repository@ssh-rework
-        env: 
-          KEY: ${{ secrets.KEY }}
+        uses: RecraftedCivilization/push-to-other-repo@v1
+        env:
+          API_TOKEN_GIHUB=${{ secrets.api_token_github }}
         with:
-          source-directory: build/reports/tests/test
-          destination-github-username: RecraftedCivilizations
-          destination-repository-name: RecraftedCivilizations.github.io
-          username: RecraftedCI
-          user-email: recrafted-ci@recrafted-ci.com
-          commit-message: "chore: Upload new test results for version: ${{ env.VERSION }}"
-          destination-folder: "Projects/${{ github.repository }}"
-          destination-repository-username: RecraftedCivilizations
-          
+         target-repository: RecraftedCivilizations/RecraftedVivilizations.github.io
+	 src-directory: build/reports/tests/test
+	 target-directory: Projects/${{ github.repository }}
+	 username: RecraftedCI
+	 email: recrafted-ci@recrafted-ci.com
+	 commit-message: "chore: Upload new test results for version: ${{ env.VERSION }}"
