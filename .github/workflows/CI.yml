@@ -30,7 +30,7 @@ jobs:
         
 
       - name: Deploy to a Git Repo
-        uses: DarkVanityOfLight/push-to-other-repo@v1
+        uses: DarkVanityOfLight/push-to-other-repo@master
         env:
           API_TOKEN_GIHUB=${{ secrets.api_token_github }}
         with:
