@@ -15,10 +15,10 @@ jobs:
               run: ./gradlew build
 
             - name: Upload Artifacts
-               uses: actions/upload-artifact@master
-               with:
-                   name: Dev-Build
-                   path: build/
+              uses: actions/upload-artifact@master
+              with:
+                  name: Dev-Build
+                  path: build/
 
             - name: Get the version
               run: |
@@ -34,9 +34,9 @@ jobs:
             - name: Checkout destination repo
               uses: actions/Checkout@v2
               with:
-                repository: RecraftedCivilizations/RecraftedCivilizations.github.io
-                ssh-key: ${{ secrets.SSH_KEY }}
-                path: ./temp
+                  repository: RecraftedCivilizations/RecraftedCivilizations.github.io
+                  ssh-key: ${{ secrets.SSH_KEY }}
+                  path: ./temp
 
             - name: Copie the files
               run: |
