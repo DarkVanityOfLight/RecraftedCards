@@ -19,4 +19,12 @@ abstract class WebRequest : IRequest {
     override fun serialize(): String {
         return Json.encodeToString(this)
     }
+
+    fun tosendableRequest(): Pair<String, String> {
+        return Pair(createHeader(), createBody())
+    }
+
+    abstract fun createHeader(): String
+    abstract fun createBody(): String
+
 }

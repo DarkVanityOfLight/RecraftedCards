@@ -6,13 +6,10 @@ package com.recraftedcivilizations.charactercards.inapi
  */
 
 interface IRequest {
-    var body: String
-    var header: String
 
     /**
      * Serialize the object as String
      * @return Returns the object as String
      **/
     fun serialize(): String
-
 }

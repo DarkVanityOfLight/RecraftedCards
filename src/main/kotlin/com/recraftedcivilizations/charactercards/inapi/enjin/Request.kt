@@ -6,18 +6,23 @@ package com.recraftedcivilizations.charactercards.inapi.enjin
  */
 
 import com.recraftedcivilizations.charactercards.inapi.WebRequest
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-@Serializable
+
 data class Request(
     val id: String, val methode: String, val params: Map<String, String>, var jsonrpc: String?,
-    override var body: String,
-    override var header: String
 ) : WebRequest() {
 
     override fun serialize(): String {
         return Json.encodeToString(this)
+    }
+
+    override fun createHeader(): String {
+        return ""
+    }
+
+    override fun createBody(): String {
+        return this.serialize()
     }
 }
