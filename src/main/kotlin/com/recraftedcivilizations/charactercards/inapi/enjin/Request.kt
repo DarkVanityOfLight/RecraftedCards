@@ -6,10 +6,11 @@ package com.recraftedcivilizations.charactercards.inapi.enjin
  */
 
 import com.recraftedcivilizations.charactercards.inapi.WebRequest
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-
+@Serializable
 data class Request(
     val id: String, val methode: String, val params: Map<String, String>, var jsonrpc: String?,
 ) : WebRequest() {
