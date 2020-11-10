@@ -24,7 +24,7 @@ abstract class WebRequest : IRequest {
         return Pair(createHeader(), createBody())
     }
 
-    abstract fun createHeader(): String
-    abstract fun createBody(): String
+    internal abstract fun createHeader(): String
+    internal abstract fun createBody(): String
 
 }
