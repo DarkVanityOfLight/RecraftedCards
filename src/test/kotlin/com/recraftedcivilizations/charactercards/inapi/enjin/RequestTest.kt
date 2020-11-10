@@ -1,4 +1,4 @@
-package com.recraftedcivilizations.charactercards.inapi
+package com.recraftedcivilizations.charactercards.inapi.enjin
 
 import com.recraftedcivilizations.charactercards.inapi.enjin.Request
 import org.junit.jupiter.api.Assertions.assertEquals
