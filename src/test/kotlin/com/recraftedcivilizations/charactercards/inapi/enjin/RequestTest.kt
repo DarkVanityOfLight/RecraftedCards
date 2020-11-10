@@ -53,4 +53,10 @@ internal class RequestTest {
     @Test
     fun shouldGenerateHeaderAndBody() {}
 
+    @Test
+    fun tosendableRequest() {
+        val toTest: Request = Request("foo", "bar", mapOf(Pair("Foo", "Bar")), "foo")
+        assertEquals(Pair("", "{\"id\":\"foo\",\"methode\":\"bar\",\"params\":{\"Foo\":\"Bar\"},\"jsonrpc\":\"foo\"}"), toTest.tosendableRequest())
+    }
+
 }
