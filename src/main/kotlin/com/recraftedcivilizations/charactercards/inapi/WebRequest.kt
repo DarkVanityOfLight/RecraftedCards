@@ -20,11 +20,21 @@ abstract class WebRequest : IRequest {
         return Json.encodeToString(this)
     }
 
-    fun tosendableRequest(): Pair<String, String> {
+    /**
+     * @return A Pair of Strings representing Header and Body as String
+     */
+    fun toSendableRequest(): Pair<String, String> {
         return Pair(createHeader(), createBody())
     }
 
+    /**
+     * @return  The Header as String for this request
+     * */
     internal abstract fun createHeader(): String
+
+    /**
+     * @return The body as String for this request
+     */
     internal abstract fun createBody(): String
 
 }
