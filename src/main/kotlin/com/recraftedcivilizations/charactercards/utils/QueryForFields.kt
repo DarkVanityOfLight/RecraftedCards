@@ -14,6 +14,7 @@ fun queryForFields(fieldMap: Map<String, SupportedTypes>, text: String): Map<Str
         val firstOccurrence = text.indexOf(key, 0, true)
 
         if (firstOccurrence != -1) {
+
             // Extract the line
             var line : String = ""
             var endIndex = 0
@@ -25,11 +26,26 @@ fun queryForFields(fieldMap: Map<String, SupportedTypes>, text: String): Map<Str
                     line += char
                 }
             }
+
+            // Extract the value
             if (line == "") { result[key] = null; break }
             text = text.removeRange(firstOccurrence, endIndex)
             val value = line.removePrefix(key).removePrefix(":").removeSuffix("\n").removePrefix(" ").removeSuffix(" ")
-            // TODO Check for type
-            result[key] = value
+            // Check for type of the value
+            val type = fieldMap[key]
+            var castResult = type!!.convert(value)
+            if (castResult != null){
+                result[key] = castResult
+                continue
+            }else{
+                castResult = type.cast(value)
+                if (castResult != null) {
+                    result[key] = castResult
+                    continue
+                }
+            }
+            // Result is not the right type and can therefore not be set
+            result[key] = null
 
         }else{
             result[key] = null
