@@ -8,13 +8,11 @@ package com.recraftedcivilizations.charactercards.inapi.enjin
 
 import com.recraftedcivilizations.charactercards.inapi.IResponse
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 
 @Serializable
 open class Response(open val id: String, override val body: String, override val header: String) : IResponse{
     override fun deserialize(): Any {
-        return Json.decodeFromString(body)
+        return Unit
     }
 
 }
