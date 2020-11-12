@@ -16,9 +16,7 @@ abstract class WebRequest : IRequest {
      * Serialize the object as an Json String
      * @return Returns the object as an Json String
      */
-    override fun serialize(): String {
-        return Json.encodeToString(this)
-    }
+    abstract override fun serialize(): String
 
     /**
      * @return A Pair of Strings representing Header and Body as String
