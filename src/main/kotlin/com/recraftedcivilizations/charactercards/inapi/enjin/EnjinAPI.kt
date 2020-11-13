@@ -6,6 +6,7 @@ package com.recraftedcivilizations.charactercards.inapi.enjin
 
 import com.recraftedcivilizations.charactercards.inapi.IRequest
 import com.recraftedcivilizations.charactercards.inapi.IProvidApplicationAccess
+import com.recraftedcivilizations.charactercards.inapi.WebRequest
 import io.ktor.client.*
 import io.ktor.client.request.*
 import java.net.URL
@@ -25,7 +26,7 @@ class EnjinAPI(override val url: URL) : IProvidApplicationAccess {
 
         val response: Response = client.post {
             url
-            body = request.serialize()
+            body = request.toSendableRequest().second
         }
 
         if(response.id != request.id){
