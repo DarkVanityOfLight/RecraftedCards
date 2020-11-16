@@ -41,7 +41,7 @@ jobs:
             - name: Copie the files
               run: |
 
-                if [ -d ./temp/Projects/${{ github.REPOSITORY}}/dev-build/$VERSION ]
+                if [ -d ./temp/Projects/${{ github.REPOSITORY}}/dev-builds/$VERSION ]
                 then
                     echo "Deleting old artifacts for the same version"
                     rm -rf ./temp/Projects/${{ github.REPOSITORY}}/dev-builds/$VERSION
@@ -124,3 +124,63 @@ jobs:
               with:
                   name: test-results
                   path: build/reports/tests/test
+                  
+    ProdBuild:
+        name: Create Production build
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: Checkout code
+              uses: actions/Checkout@v2
+        
+            - name: Build
+              run: ./gradlew shadowJar -x test
+            - name: Upload Artifacts
+              uses: actions/upload-artifact@master
+              with:
+                  name: Prod-Build
+                  path: build/
+
+            - name: Get the version
+              run: |
+                while read line; do
+                    if [[ "$line" =~ version\ .+ ]]
+                    then
+                        VERSION=${line:9}
+                        VERSION=${VERSION::-1}
+                    fi
+                done < build.gradle
+                echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+            - name: Checkout destination repo
+              uses: actions/Checkout@v2
+              with:
+                  repository: RecraftedCivilizations/RecraftedCivilizations.github.io
+                  ssh-key: ${{ secrets.SSH_KEY }}
+                  path: ./temp
+
+            - name: Copie the files
+              run: |
+
+                if [ -d ./temp/Projects/${{ github.REPOSITORY}}/prod-builds/$VERSION ]
+                then
+                    echo "Deleting old artifacts for the same version"
+                    rm -rf ./temp/Projects/${{ github.REPOSITORY}}/prod-builds/$VERSION
+                fi
+                mkdir -p ./temp/Projects/${{ github.REPOSITORY }}/dev-builds/$VERSION
+
+                cp -r build/libs ./temp/Projects/${{ github.REPOSITORY }}/dev-builds/$VERSION
+
+
+            - name: Push the changes
+              working-directory: ./temp
+              run: |
+                git config --global user.name "RecraftedCivilizationsCI"
+                git config --global user.email "recrafted-cd@recraftedcivilizations.com"
+                git add .
+                git commit -m "feat: Upload prod-build artifacts results for version: $VERSION"
+                git push
+
+              
+              
+        
