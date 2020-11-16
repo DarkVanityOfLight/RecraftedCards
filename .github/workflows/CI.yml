@@ -58,7 +58,7 @@ jobs:
                 git config --global user.email "recrafted-cd@recraftedcivilizations.com"
                 git add .
                 git commit -m "feat: Upload dev-build artifacts results for version: $VERSION"
-                git pull --ff-only
+                git pull --ff
                 git push
 
 
@@ -180,7 +180,7 @@ jobs:
                 git config --global user.email "recrafted-cd@recraftedcivilizations.com"
                 git add .
                 git commit -m "feat: Upload prod-build artifacts results for version: $VERSION"
-                git pull --ff-only
+                git pull --ff
                 git push
 
               
