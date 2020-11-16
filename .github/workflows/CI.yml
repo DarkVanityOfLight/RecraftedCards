@@ -56,9 +56,9 @@ jobs:
               run: |
                 git config --global user.name "RecraftedCivilizationsCI"
                 git config --global user.email "recrafted-cd@recraftedcivilizations.com"
+                git pull --ff
                 git add .
                 git commit -m "feat: Upload dev-build artifacts results for version: $VERSION"
-                git pull --ff
                 git push
 
 
@@ -178,9 +178,9 @@ jobs:
               run: |
                 git config --global user.name "RecraftedCivilizationsCI"
                 git config --global user.email "recrafted-cd@recraftedcivilizations.com"
+                git pull --ff
                 git add .
                 git commit -m "feat: Upload prod-build artifacts results for version: $VERSION"
-                git pull --ff
                 git push
 
               
