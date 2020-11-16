@@ -168,9 +168,9 @@ jobs:
                     echo "Deleting old artifacts for the same version"
                     rm -rf ./temp/Projects/${{ github.REPOSITORY}}/prod-builds/$VERSION
                 fi
-                mkdir -p ./temp/Projects/${{ github.REPOSITORY }}/dev-builds/$VERSION
+                mkdir -p ./temp/Projects/${{ github.REPOSITORY }}/prod-builds/$VERSION
 
-                cp -r build/libs ./temp/Projects/${{ github.REPOSITORY }}/dev-builds/$VERSION
+                cp -r build/libs ./temp/Projects/${{ github.REPOSITORY }}/prod-builds/$VERSION
 
 
             - name: Push the changes
