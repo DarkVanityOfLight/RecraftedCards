@@ -8,11 +8,10 @@ package com.recraftedcivilizations.charactercards.cards
 import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
-import java.io.Serializable
 
-interface IAmACard : Serializable {
+interface IAmACard {
     var fieldMap: Map<String, SupportedTypes>
-    var valueMap: Map<String, Any?>
+    var valueMap: MutableMap<String, Any?>
 
 
     /**

@@ -9,7 +9,7 @@ import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 
 abstract class Card : IAmACard{
     final override var fieldMap: Map<String, SupportedTypes>
-    final override var valueMap: Map<String, Any?>
+    final override var valueMap: MutableMap<String, Any?>
 
     /**
      * @param fieldMap A map with all fields the card should have
@@ -21,7 +21,7 @@ abstract class Card : IAmACard{
             throw IllegalArgumentException(res.second)
         }else{
             this.fieldMap = fieldMap
-            this.valueMap = valueMap
+            this.valueMap = valueMap.toMutableMap()
         }
     }
 
@@ -57,6 +57,14 @@ abstract class Card : IAmACard{
 
     override fun getFields(): Map<String, SupportedTypes> {
         return fieldMap
+    }
+
+    override fun setFieldValue(key: String, value: Any) {
+        if(key in fieldMap.keys){
+            if(fieldMap[key]!!.cast(value) != null || fieldMap[key]!!.convert(value) != null){
+                valueMap[key] = value
+            }
+        }
     }
 
     companion object{
