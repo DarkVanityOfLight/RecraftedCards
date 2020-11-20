@@ -46,8 +46,20 @@ internal class ConfigParserTest {
         val parser = ConfigParser(config)
         parser.read()
 
-        var matches = false
         assertEquals(mapOf(Pair("Foo", SupportedTypes.STRING)), parser.fields)
+
+    }
+
+    @Test
+    fun readNull(){
+        configFile.delete()
+        val config = YamlConfiguration()
+        config.createSection("Foo", mapOf(Pair("Bar", "foo")))
+
+        val parser = ConfigParser(config)
+        parser.read()
+
+        assertEquals(null, parser.fields)
 
     }
 }
