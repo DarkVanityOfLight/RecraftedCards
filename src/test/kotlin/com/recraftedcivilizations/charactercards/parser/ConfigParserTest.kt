@@ -7,14 +7,16 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import java.io.File
+import java.lang.NullPointerException
 
 internal class ConfigParserTest {
     var configFile = File("config.yml")
 
     @BeforeEach
     fun setUp() {
-        val fields = mapOf(Pair("Foo", "STRING"))
+        val fields = mapOf(Pair("Foo", "STRING"), Pair("Bar", "FOo"))
         val yamlConfiguration = YamlConfiguration()
         yamlConfiguration.createSection("fields", fields)
         yamlConfiguration.save(configFile)
@@ -57,7 +59,10 @@ internal class ConfigParserTest {
         config.createSection("Foo", mapOf(Pair("Bar", "foo")))
 
         val parser = ConfigParser(config)
-        parser.read()
+
+        val exception = assertThrows<NullPointerException> {
+            parser.read()
+        }
 
         assertEquals(null, parser.fields)
 
