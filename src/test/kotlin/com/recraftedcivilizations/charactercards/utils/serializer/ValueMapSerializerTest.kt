@@ -11,7 +11,6 @@ internal class ValueMapSerializerTest {
         val map = mapOf(Pair("Foo", "Bar"), Pair("Bar", 3), Pair("FooBar", null))
 
         val res = ValueMapSerializer().serialize(map)
-        println(res)
         assert(res == "{ \"Foo\" : \"Bar\", \"Bar\" : 3, \"FooBar\" : null }")
 
     }
