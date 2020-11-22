@@ -30,7 +30,7 @@ dependencies {
 }
 
 dependencies {
-    testImplementation 'org.mockito:mockito-core:2.7.22'
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
     testCompile bukkit()
     testCompile 'com.github.darkvanityoflight:RecraftedCore:2.+'
 }
