@@ -1,6 +1,7 @@
 package com.recraftedcivilizations.charactercards.commands
 
 import com.recraftedcivilizations.charactercards.CharacterCards
+import com.recraftedcivilizations.charactercards.parser.DataParser
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
@@ -43,6 +44,7 @@ class SetField: CommandExecutor {
             }
 
             cardToModify.setFieldValue(field, value)
+            CharacterCards.instance!!.dataParser.setCard(cardToModify.owner, cardToModify)
             return true
         }else{
             sender.sendMessage("Sry console man you can't do that, if you need this feature contact your dev")
