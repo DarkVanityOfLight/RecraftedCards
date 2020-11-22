@@ -12,6 +12,7 @@ operator fun Regex.contains(text: CharSequence): Boolean = this.matches(text)
 
 class ConfigParser(config: FileConfiguration) : ARecraftedConfigParser(config) {
     var fields: Map<String, SupportedTypes>? = null
+    var defaultMode: String = "TEXT"
 
     override fun read() {
         val fieldsSection = config.getConfigurationSection("fields")
@@ -21,6 +22,11 @@ class ConfigParser(config: FileConfiguration) : ARecraftedConfigParser(config) {
             return
         }
         fields = parseFields(fieldsSection)
+        val dMode = config.getString("defaultMode")
+        if(dMode != null && (dMode.toUpperCase() == "GUI" || dMode.toUpperCase() == "TEXT")){
+            defaultMode = dMode
+        }
+
     }
 
 

@@ -5,6 +5,7 @@ package com.recraftedcivilizations.charactercards.cards
  */
 
 
+import com.recraftedcivilizations.charactercards.CharacterCards
 import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
@@ -12,6 +13,7 @@ import org.bukkit.inventory.Inventory
 
 class CharacterCard : Card {
     val owner: Player
+    val GUIMode: Boolean = false
 
 
     /**
@@ -55,7 +57,11 @@ class CharacterCard : Card {
     /**
      * @param player The player the Card should be displayed to
      */
-    override fun display(player: Player) {
-        TODO("Not yet implemented")
+    override fun display(player: Player, mode: String) {
+        if(GUIMode && mode.toUpperCase() == "GUI" || GUIMode && CharacterCards.instance!!.configParser.defaultMode.toUpperCase() == "GUI"){
+            player.openInventory(getGUIOutputRepresentation())
+        }else{
+            player.sendMessage(getChatOutputRepresentation())
+        }
     }
 }

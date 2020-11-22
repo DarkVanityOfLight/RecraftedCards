@@ -50,5 +50,5 @@ interface IAmACard {
     /**
      * @param player The player the Card should be displayed to
      */
-    fun display(player: Player)
+    fun display(player: Player, mode: String)
 }
