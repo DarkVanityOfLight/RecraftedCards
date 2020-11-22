@@ -12,6 +12,7 @@ import org.bukkit.inventory.Inventory
 
 class CharacterCard : Card {
     val owner: Player
+    val GUIMode: Boolean = false
 
 
     /**
@@ -56,6 +57,10 @@ class CharacterCard : Card {
      * @param player The player the Card should be displayed to
      */
     override fun display(player: Player) {
-        TODO("Not yet implemented")
+        if(GUIMode){
+            player.openInventory(getGUIOutputRepresentation())
+        }else{
+            player.sendMessage(getChatOutputRepresentation())
+        }
     }
 }
