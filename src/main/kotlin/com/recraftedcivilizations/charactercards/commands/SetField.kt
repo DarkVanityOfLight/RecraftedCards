@@ -26,7 +26,7 @@ class SetField: CommandExecutor {
         val cardToModify = CharacterCards.instance!!.dataParser.getCard(player)
         if(cardToModify == null){ sender.sendMessage("${ChatColor.RED}This player does not have a Character card yet"); return false }
 
-        if (sender.hasPermission("cards.modify" ) || sender == player){
+        if (sender.hasPermission("cards.modify" ) || sender == cardToModify.owner){
             // Make sure the arguments fit our needs
             // Check that the field to set is in our field map
             if(field !in cardToModify.fieldMap.keys){ sender.sendMessage("${ChatColor.RED}There is no such field in the Character Cards"); return false }
