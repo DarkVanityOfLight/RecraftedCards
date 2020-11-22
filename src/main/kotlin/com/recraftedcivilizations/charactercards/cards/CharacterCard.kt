@@ -5,6 +5,7 @@ package com.recraftedcivilizations.charactercards.cards
  */
 
 
+import com.recraftedcivilizations.charactercards.CharacterCards
 import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
@@ -56,8 +57,8 @@ class CharacterCard : Card {
     /**
      * @param player The player the Card should be displayed to
      */
-    override fun display(player: Player) {
-        if(GUIMode){
+    override fun display(player: Player, mode: String) {
+        if(GUIMode && mode.toUpperCase() == "GUI" || GUIMode && CharacterCards.instance!!.configParser.defaultMode.toUpperCase() == "GUI"){
             player.openInventory(getGUIOutputRepresentation())
         }else{
             player.sendMessage(getChatOutputRepresentation())
