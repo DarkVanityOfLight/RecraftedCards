@@ -16,7 +16,11 @@ class ShowCard(private val dataParser: DataParser): CommandExecutor {
             val player = Bukkit.getPlayer(args[0])
             if (player != null){
                 val card = dataParser.getCard(player)
-                card.display(player, args[1])
+                if (card != null) {
+                    card.display(player, args[1])
+                }else{
+                    sender.sendMessage("${ChatColor.RED}This player does not have a Character Card yet")
+                }
                 true
             }else{
                 sender.sendMessage("${ChatColor.RED}Could not find the player ${args[0]}.")
