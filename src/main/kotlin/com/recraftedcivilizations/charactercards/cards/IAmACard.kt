@@ -8,9 +8,8 @@ package com.recraftedcivilizations.charactercards.cards
 import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
-import java.io.Serializable
 
-interface IAmACard : Serializable {
+interface IAmACard {
     var fieldMap: Map<String, SupportedTypes>
     var valueMap: MutableMap<String, Any?>
 
@@ -51,5 +50,5 @@ interface IAmACard : Serializable {
     /**
      * @param player The player the Card should be displayed to
      */
-    fun display(player: Player)
+    fun display(player: Player, mode: String)
 }

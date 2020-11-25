@@ -5,24 +5,31 @@ package com.recraftedcivilizations.charactercards.cards
  */
 
 
+import com.recraftedcivilizations.charactercards.CharacterCards
 import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
 
 class CharacterCard : Card {
+    val owner: Player
+    var GUIMode: Boolean = false
 
 
     /**
      * @param fieldMap A map with all fields the card should have
      * @param valueMap A map with all values to initialize the card
      */
-    constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any>) : super(fieldMap, valueMap) {}
+    constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any>, player: Player) : super(fieldMap, valueMap) {
+        this.owner = player
+    }
 
     /**
      * @param fieldMap A map with all fields the card should have
      */
-    constructor(fieldMap: Map<String, SupportedTypes>) : super(fieldMap){}
+    constructor(fieldMap: Map<String, SupportedTypes>, player: Player) : super(fieldMap){
+        this.owner = player
+    }
 
     /**
      * @return Returns the output representation for the Card as String
@@ -36,7 +43,7 @@ class CharacterCard : Card {
                 ChatColor.GREEN.toString() + "$key: ${valueMap[key].toString()}\n"
             }
         }
-        resultString += "&b=============================="
+        resultString += ChatColor.translateAlternateColorCodes('&',"&b==============================")
         return resultString
     }
 
@@ -50,7 +57,11 @@ class CharacterCard : Card {
     /**
      * @param player The player the Card should be displayed to
      */
-    override fun display(player: Player) {
-        TODO("Not yet implemented")
+    override fun display(player: Player, mode: String) {
+        if(GUIMode && mode.toUpperCase() == "GUI" || GUIMode && CharacterCards.instance!!.configParser.defaultMode.toUpperCase() == "GUI"){
+            player.openInventory(getGUIOutputRepresentation())
+        }else{
+            player.sendMessage(getChatOutputRepresentation())
+        }
     }
 }
