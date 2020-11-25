@@ -48,7 +48,7 @@ jobs:
                 fi
                 mkdir -p ./temp/Projects/${{ github.REPOSITORY }}/dev-builds/$VERSION
 
-                cp -r build/libs ./temp/Projects/${{ github.REPOSITORY }}/dev-builds/$VERSION
+                cp -r build/libs/. ./temp/Projects/${{ github.REPOSITORY }}/dev-builds/$VERSION
 
 
             - name: Push the changes
@@ -108,7 +108,7 @@ jobs:
                 fi    
                 mkdir -p ./temp/Projects/${{ github.REPOSITORY }}/tests/$VERSION
                     
-                cp -r build/reports/tests/test ./temp/Projects/${{ github.REPOSITORY }}/tests/$VERSION
+                cp -r build/reports/tests/test/. ./temp/Projects/${{ github.REPOSITORY }}/tests/$VERSION
                     
             
             - name: Push the changes
@@ -170,7 +170,7 @@ jobs:
                 fi
                 mkdir -p ./temp/Projects/${{ github.REPOSITORY }}/prod-builds/$VERSION
 
-                cp -r build/libs ./temp/Projects/${{ github.REPOSITORY }}/prod-builds/$VERSION
+                cp -r build/libs/. ./temp/Projects/${{ github.REPOSITORY }}/prod-builds/$VERSION
 
 
             - name: Push the changes
@@ -223,7 +223,7 @@ jobs:
                       rm -rf ./temp/Projects/${{ github.REPOSITORY}}/docs/$VERSION
                   fi
                   mkdir -p ./temp/Projects/${{ github.REPOSITORY }}/docs/$VERSION
-                  cp -r build/dokka/html ./temp/Projects/${{ github.REPOSITORY }}/docs/$VERSION
+                  cp -r build/dokka/html/. ./temp/Projects/${{ github.REPOSITORY }}/docs/$VERSION
 
             - name: Push the changes
               working-directory: ./temp
