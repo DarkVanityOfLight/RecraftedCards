@@ -13,7 +13,7 @@ import org.bukkit.inventory.Inventory
 
 class CharacterCard : Card {
     val owner: Player
-    val GUIMode: Boolean = false
+    var GUIMode: Boolean = false
 
 
     /**
@@ -43,7 +43,7 @@ class CharacterCard : Card {
                 ChatColor.GREEN.toString() + "$key: ${valueMap[key].toString()}\n"
             }
         }
-        resultString += "&b=============================="
+        resultString += ChatColor.translateAlternateColorCodes('&',"&b==============================")
         return resultString
     }
 
