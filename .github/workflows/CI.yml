@@ -182,7 +182,47 @@ jobs:
                 git add .
                 git commit -m "feat: Upload prod-build artifacts results for version: $VERSION"
                 git push
+    Docs:
+        name: Generate Docs
+        runs-on: ubuntu-latest
 
-              
-              
+        steps:
+            - name: Checkout code
+            uses: actions/Checkout@v2
+            - name: Generate docs
+              run: ./gradlew dokkaHtml
+            -   name: Upload Artifacts
+                uses: actions/upload-artifact@master
+                with:
+                    name: Docs
+                    path: build/dokka/
+            -   name: Get the version
+                run: |
+                    while read line; do
+                        if [[ "$line" =~ version\ .+ ]]
+                        then
+                            VERSION=${line:9}
+                            VERSION=${VERSION::-1}
+                        fi
+                    done < build.gradle
+                    echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+            -   name: Checkout destination repo
+                uses: actions/Checkout@v2
+                with:
+                    repository: RecraftedCivilizations/RecraftedCivilizations.github.io
+                    ssh-key: ${{ secrets.SSH_KEY }}
+                    path: ./temp
+
+            -   name: Copie the files
+                run: |
+
+                    if [ -d ./temp/Projects/${{ github.REPOSITORY}}/docs/$VERSION ]
+                    then
+                        echo "Deleting old artifacts for the same version"
+                        rm -rf ./temp/Projects/${{ github.REPOSITORY}}/docs/$VERSION
+                    fi
+                    mkdir -p ./temp/Projects/${{ github.REPOSITORY }}/docs/$VERSION
+
+                    cp -r build/dokka/html ./temp/Projects/${{ github.REPOSITORY }}/docs/$VERSION
         
