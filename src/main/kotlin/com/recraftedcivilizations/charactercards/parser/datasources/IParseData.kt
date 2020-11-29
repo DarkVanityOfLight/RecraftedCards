@@ -6,6 +6,6 @@ import org.bukkit.entity.Player
 
 interface IParseData {
 
-    fun getCard(player: Player): CharacterCard
+    fun getCard(player: Player): CharacterCard?
     fun setCard(player: Player, card: Card)
 }
