@@ -10,7 +10,7 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object CardTable: Table(){
-    val player: Column<String> = varchar("valueMap", 100)
+    val player: Column<String> = varchar("player", 100)
 
 }
 
