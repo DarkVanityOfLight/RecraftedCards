@@ -15,7 +15,7 @@ abstract class Card : IAmACard{
      * @param fieldMap A map with all fields the card should have
      * @param valueMap A map with all values to initialize the card
      */
-    constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any>){
+    constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any?>){
         val res = validateMaps(fieldMap, valueMap)
         if(!res.first){
             throw IllegalArgumentException(res.second)
