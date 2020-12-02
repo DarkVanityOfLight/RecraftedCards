@@ -18,14 +18,24 @@ class SQLDataSource(private val password: String, private val username: String) 
     private val database: Database =
         Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver", user = username, password = password)
 
-    private fun getFieldsFromDB(fieldMap: Map<String, SupportedTypes>, playerName: String): Map<String, Any>{
-        val valueMap = emptyMap<String, Any>().toMutableMap()
+    private fun getFieldsFromDB(fieldMap: Map<String, SupportedTypes>, playerName: String): Map<String, Any?>{
+        val valueMap = emptyMap<String, Any?>().toMutableMap()
+        // Query database for all fields that are passed through
         transaction(database){
             exec("select * from CardTable where exists (Select * from CardTable where player = '${playerName}')"){rs ->
                 for (field in fieldMap.keys){
                     valueMap[field] = rs.getString(field)
                 }
             }
+        }
+
+        // Check the returned values for their type
+        for (key in valueMap.keys){
+            val value = valueMap[key]
+            val fieldType = fieldMap[key] ?: error("Wrong specified key, internal error, contact your dev")
+            if (value == ""){ valueMap[key] = null; continue }
+            if (value == null){ continue }
+            if(fieldType.convert(value) == null && fieldType.cast(value) == null){ valueMap[key] = null; continue }
         }
         return valueMap
     }
