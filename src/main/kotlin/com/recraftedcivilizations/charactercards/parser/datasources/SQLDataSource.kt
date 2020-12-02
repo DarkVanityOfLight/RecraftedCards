@@ -40,6 +40,9 @@ class SQLDataSource(private val password: String, private val username: String) 
         return valueMap
     }
 
+    private fun setFieldsInDB(valueMap: Map<String, Any?>, playerName: String){
+        TODO("Not yet implemented")
+    }
 
     override fun getCard(player: Player, fieldMap: Map<String, SupportedTypes>): CharacterCard? {
         val valueMap = getFieldsFromDB(fieldMap, player.name)
@@ -47,6 +50,7 @@ class SQLDataSource(private val password: String, private val username: String) 
     }
 
     override fun setCard(player: Player, card: Card) {
-        TODO("Not yet implemented")
+        val fields = card.getFields()
+        setFieldsInDB(card.valueMap, player.name)
     }
 }
