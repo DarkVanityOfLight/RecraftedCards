@@ -1,9 +1,7 @@
 package com.recraftedcivilizations.charactercards.parser.datasources
 
-import com.recraftedcivilizations.charactercards.CharacterCards
 import com.recraftedcivilizations.charactercards.cards.Card
 import com.recraftedcivilizations.charactercards.cards.CharacterCard
-import com.recraftedcivilizations.charactercards.parser.ConfigParser
 import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.entity.Player
 import org.jetbrains.exposed.sql.*
@@ -14,10 +12,23 @@ object CardTable: Table(){
 
 }
 
+/**
+ * Represents a sql datasource to read and write cards
+ * @constructor Requires a password and an username for the database
+ * @author DarkVanityOfLight
+ * @property password The password for the database
+ * @property username The username for the database
+ */
 class SQLDataSource(private val password: String, private val username: String) : IParseData {
     private val database: Database =
         Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver", user = username, password = password)
 
+    /**
+     * Get a values according to a field map from the database
+     * @param fieldMap A map with all names and their type
+     * @param playerName The name of the card owner
+     * @return A map with all fields and their value or null
+     */
     private fun getFieldsFromDB(fieldMap: Map<String, SupportedTypes>, playerName: String): Map<String, Any?>{
         val valueMap = emptyMap<String, Any?>().toMutableMap()
         // Query database for all fields that are passed through
@@ -40,6 +51,11 @@ class SQLDataSource(private val password: String, private val username: String) 
         return valueMap
     }
 
+    /**
+     * Store a value map to the database
+     * @param valueMap A map with all values that should be stored
+     * @param playerName The player name
+     */
     private fun setFieldsInDB(valueMap: Map<String, Any?>, playerName: String){
         TODO("Not yet implemented")
     }
