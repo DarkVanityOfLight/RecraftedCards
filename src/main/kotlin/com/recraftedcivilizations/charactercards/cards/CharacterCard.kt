@@ -20,7 +20,7 @@ class CharacterCard : Card {
      * @param fieldMap A map with all fields the card should have
      * @param valueMap A map with all values to initialize the card
      */
-    constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any>, player: Player) : super(fieldMap, valueMap) {
+    constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any?>, player: Player) : super(fieldMap, valueMap) {
         this.owner = player
     }
 
