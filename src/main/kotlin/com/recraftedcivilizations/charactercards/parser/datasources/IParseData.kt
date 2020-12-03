@@ -10,7 +10,7 @@ import org.bukkit.entity.Player
  * @author DarkVanityOfLight
  */
 interface IParseData {
-
+    val dataURI: String
     /**
      * Get a card from the data source
      * @param player The Player which owns the card

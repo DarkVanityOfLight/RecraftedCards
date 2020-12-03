@@ -19,9 +19,9 @@ object CardTable: Table(){
  * @property password The password for the database
  * @property username The username for the database
  */
-class SQLDataSource(private val password: String, private val username: String) : IParseData {
-    private val database: Database =
-        Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver", user = username, password = password)
+class SQLDataSource(private val password: String, private val username: String, override val dataURI: String) : IParseData {
+    private val  database: Database =
+        Database.connect(dataURI, driver = "com.mysql.jdbc.Driver", user = username, password = password)
 
     /**
      * Get a values according to a field map from the database
