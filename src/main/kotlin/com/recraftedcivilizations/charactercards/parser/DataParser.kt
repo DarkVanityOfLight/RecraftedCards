@@ -4,7 +4,6 @@ import com.recraftedcivilizations.charactercards.cards.Card
 import com.recraftedcivilizations.charactercards.cards.CharacterCard
 import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.entity.Player
-import java.io.ObjectOutputStream
 
 class DataParser {
 
