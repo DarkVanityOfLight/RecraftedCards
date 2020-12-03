@@ -20,8 +20,11 @@ object CardTable: Table(){
  * @property username The username for the database
  */
 class SQLDataSource(private val password: String, private val username: String, override val dataURI: String) : IParseData {
-    private val  database: Database =
-        Database.connect(dataURI, driver = "com.mysql.jdbc.Driver", user = username, password = password)
+    private val  database: Database
+
+    init {
+        database = Database.connect(dataURI, driver = "org.postgresql.Driver", user = username, password = password)
+    }
 
     /**
      * Get a values according to a field map from the database
