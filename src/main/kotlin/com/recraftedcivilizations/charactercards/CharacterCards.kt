@@ -1,13 +1,14 @@
 package com.recraftedcivilizations.charactercards
 
 import com.github.darkvanityoflight.recraftedcore.ARecraftedPlugin
-import com.github.darkvanityoflight.recraftedcore.configparser.ARecraftedConfigParser
 import com.recraftedcivilizations.charactercards.parser.ConfigParser
 import com.recraftedcivilizations.charactercards.parser.DataParser
+import com.recraftedcivilizations.charactercards.parser.datasources.IParseData
+import com.recraftedcivilizations.charactercards.parser.datasources.SQLDataSource
 
 class CharacterCards : ARecraftedPlugin() {
     val configParser : ConfigParser = ConfigParser(config)
-    val dataParser : DataParser = DataParser()
+    val dataParser : IParseData = SQLDataSource("foo", "bar", "foobar")
 
     override fun onEnable() {
         super.onEnable()
