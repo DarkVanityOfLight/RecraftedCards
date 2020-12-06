@@ -1,12 +1,15 @@
 package com.recraftedcivilizations.charactercards.cards
 
-/**
- * @author DarkVanityOfLight
- */
-
 import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 
-
+/**
+ * Represents a simple card with fields and values
+ * @author DarkVanityOfLight
+ * @constructor Initialize a card using given fields and values, checks the values for their field types
+ * @constructor Initialize a card using given fields, null all values
+ * @property fieldMap A map with all field names and their type
+ * @property valueMap A map with all field names and their value
+ */
 abstract class Card : IAmACard{
     final override var fieldMap: Map<String, SupportedTypes>
     final override var valueMap: MutableMap<String, Any?>
@@ -46,19 +49,39 @@ abstract class Card : IAmACard{
 
     }
 
-
+    /**
+     * Get the type for a given field
+     * @param key The field name to get the type from
+     * @return Returns the Type or null if the field does not exist
+     * @see SupportedTypes
+     */
     override fun getFieldType(key: String): SupportedTypes?{
         return fieldMap[key]
     }
 
+    /**
+     * Get the field value
+     * @param key The field name
+     * @return Return the value or null if field does not exist
+     */
     override fun getFieldValue(key: String): Any? {
         return valueMap[key]
     }
 
+    /**
+     * Get the field map
+     * @return Returns a map of <String, SupportedTypes> representing all fields#
+     * @see SupportedTypes
+     */
     override fun getFields(): Map<String, SupportedTypes> {
         return fieldMap
     }
 
+    /**
+     * Set a value in the value map
+     * @param key The field name to set the value
+     * @param value The value to set
+     */
     override fun setFieldValue(key: String, value: Any) {
         if(key in fieldMap.keys){
             if(fieldMap[key]!!.cast(value) != null || fieldMap[key]!!.convert(value) != null){
