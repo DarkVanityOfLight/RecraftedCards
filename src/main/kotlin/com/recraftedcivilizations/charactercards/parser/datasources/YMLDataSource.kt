@@ -8,7 +8,7 @@ import org.bukkit.entity.Player
 import java.io.File
 
 class YMLDataSource(override val dataURI: String) : IParseData {
-    val dataFile: YamlConfiguration
+   private val dataFile: YamlConfiguration
 
     init {
         dataFile = YamlConfiguration.loadConfiguration(File(dataURI))
