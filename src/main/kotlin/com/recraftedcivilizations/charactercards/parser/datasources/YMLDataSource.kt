@@ -15,11 +15,19 @@ class YMLDataSource(override val dataURI: String) : IParseData {
     }
 
     override fun getCard(player: Player, fieldMap: Map<String, SupportedTypes>): CharacterCard? {
-        TODO("Not yet implemented")
+        val valueMap = mapOf<String, Any?>().toMutableMap()
+        val cardSection =
+            dataFile.getConfigurationSection("cards.${player.name}") ?: return CharacterCard(fieldMap, player)
+
+        for (key in fieldMap.keys){
+            valueMap[key] = cardSection.getString(key)
+        }
+
+        return CharacterCard(fieldMap, valueMap, player)
     }
 
     override fun setCard(player: Player, card: Card) {
-        val cardSection = dataFile.createSection("card.${player.name}", card.valueMap)
+        val cardSection = dataFile.createSection("cards.${player.name}", card.valueMap)
         dataFile.save(File(dataURI))
 
     }
