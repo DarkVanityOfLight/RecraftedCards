@@ -19,7 +19,7 @@ class YMLDataSource(override val dataURI: String) : IParseData {
     }
 
     override fun setCard(player: Player, card: Card) {
-        val cardSection = dataFile.createSection("card.${player.name}", card.valueMap)
+        val cardSection = dataFile.createSection("cards.${player.name}", card.valueMap)
         dataFile.save(File(dataURI))
 
     }
