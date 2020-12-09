@@ -15,7 +15,7 @@ import java.io.File
 
 internal class YMLDataSourceTest {
     private val testFieldMap = mapOf(Pair("toBeString", SupportedTypes.STRING), Pair("toBeInt", SupportedTypes.INT), Pair("toBeNull", SupportedTypes.STRING))
-    private val testValueMap = mapOf(Pair("toBeString", "foo"), Pair("toBeInt", 3))
+    private val testValueMap = mapOf(Pair("toBeString", "foo"), Pair("toBeInt", 3), Pair("toBeNull", null))
     private val dataURI = "./data.yml"
     val mockPlayer = mock<Player> {
         on { getName() } doReturn "Foo"
@@ -33,7 +33,11 @@ internal class YMLDataSourceTest {
         dataFile.save(File(dataURI))
 
         val dataParser: IParseData = YMLDataSource(dataURI)
-        assertEquals(CharacterCard(testFieldMap, testValueMap, mockPlayer), dataParser.getCard(mockPlayer, testFieldMap))
+        val card = dataParser.getCard(mockPlayer, testFieldMap)
+        card!!
+        assertEquals(testFieldMap, card.fieldMap)
+        assertEquals(testValueMap.toString(), card.valueMap.toString())
+        assertEquals(mockPlayer, card.owner)
     }
 
     @Test
