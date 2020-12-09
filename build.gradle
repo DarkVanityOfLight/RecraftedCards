@@ -4,6 +4,7 @@ plugins {
     id 'maven-publish'
     id "org.hibernate.build.maven-repo-auth" version "3.0.4"
     id "ru.endlesscode.bukkitgradle" version "0.8.2"
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.10'
     id("org.jetbrains.dokka") version "1.4.10.2"
 }
 
@@ -11,6 +12,7 @@ group 'com.recraftedcivilizations'
 version '1.0-SNAPSHOT'
 
 repositories {
+    jcenter()
     maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     mavenCentral()
     jcenter()
@@ -23,6 +25,16 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     compile 'org.junit.jupiter:junit-jupiter:5.7.0'
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1'
+
+}
+
+dependencies {
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testCompile bukkit()
+    testCompile 'com.github.darkvanityoflight:RecraftedCore:2.+'
 }
 
 test {
@@ -37,4 +49,10 @@ dependencies {
     implementation "org.jetbrains.exposed:exposed-jdbc:$exposed_version"
     implementation 'org.postgresql:postgresql:42.2.10'
 
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
