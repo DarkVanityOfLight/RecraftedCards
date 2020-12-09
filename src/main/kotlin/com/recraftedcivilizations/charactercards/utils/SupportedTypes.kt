@@ -12,9 +12,7 @@ enum class SupportedTypes {
     BYTE{
         override fun convert(x: Any): Byte? {
             if(x is Number){
-                with(x as Number){
                     return x.toByte()
-                }
             }
             return null
         }
@@ -32,9 +30,7 @@ enum class SupportedTypes {
     SHORT{
         override fun convert(x: Any): Short? {
             if(x is Number){
-                with(x as Number){
                     return x.toShort()
-                }
             }
             return null
         }
@@ -51,12 +47,17 @@ enum class SupportedTypes {
 
     INT{
         override fun convert(x: Any): Int? {
-            if(x is Number){
-                with(x as Number){
-                    return x.toInt()
+            return when (x) {
+                is Number -> {
+                    x.toInt()
+                }
+                is String -> {
+                    x.toInt()
+                }
+                else -> {
+                    null
                 }
             }
-            return null
         }
 
         override fun cast(x : Any): Int?{
@@ -72,9 +73,7 @@ enum class SupportedTypes {
     LONG{
         override fun convert(x: Any): Long? {
             if(x is Number){
-                with(x as Number){
                     return x.toLong()
-                }
             }
             return null
         }
@@ -92,9 +91,7 @@ enum class SupportedTypes {
     FLOAT{
         override fun convert(x: Any): Float? {
             if(x is Number){
-                with(x as Number){
                     return x.toFloat()
-                }
             }
             return null
         }
@@ -112,9 +109,7 @@ enum class SupportedTypes {
     DOUBLE{
         override fun convert(x: Any): Double? {
             if(x is Number){
-                with(x as Number){
                     return x.toDouble()
-                }
             }
             return null
         }

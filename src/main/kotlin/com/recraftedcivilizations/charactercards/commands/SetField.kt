@@ -24,7 +24,9 @@ class SetField: CommandExecutor {
         val player = Bukkit.getPlayer(playerName)
         if(player == null){ sender.sendMessage("${ChatColor.RED}There is no such player please try again with a valid player"); return false }
 
-        val cardToModify = CharacterCards.instance!!.dataParser.getCard(player)
+        val cardToModify = CharacterCards.instance!!.dataParser.getCard(player,
+            CharacterCards.instance!!.configParser.fields!!
+        )
         if(cardToModify == null){ sender.sendMessage("${ChatColor.RED}This player does not have a Character card yet"); return false }
 
         if (sender.hasPermission("cards.modify" ) || sender == cardToModify.owner){

@@ -18,7 +18,7 @@ abstract class Card : IAmACard{
      * @param fieldMap A map with all fields the card should have
      * @param valueMap A map with all values to initialize the card
      */
-    constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any>){
+    constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any?>){
         val res = validateMaps(fieldMap, valueMap)
         if(!res.first){
             throw IllegalArgumentException(res.second)
@@ -107,9 +107,9 @@ abstract class Card : IAmACard{
 
                 if (value != null){
                     try{
-                        val supportedType = SupportedTypes.valueOf(value::class.simpleName!!.toUpperCase())
-                        if (supportedType != type){
-                            if(type.convert(supportedType) != null){
+                        val currentType = SupportedTypes.valueOf(value::class.simpleName!!.toUpperCase())
+                        if (currentType != type){
+                            if(type.convert(value) != null){
                                 continue
                             }else{
                                 return Pair(false, FIELD_TYPE_OTHER_THEN_VALUE_TYPE)
