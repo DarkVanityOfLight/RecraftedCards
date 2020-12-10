@@ -39,7 +39,7 @@ internal class SQLDataSourceTest {
 
     }
 
-    //@Disabled
+    @Disabled
     @Test
     fun setCard() {
         val dataParser: SQLDataSource = SQLDataSource("test", "test", "jdbc:pgsql://localhost:5432")
