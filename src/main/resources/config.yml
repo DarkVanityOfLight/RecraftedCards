@@ -1,0 +1,6 @@
+defaultMode: TEXT
+dataMode: YML
+fields:
+  Name: String
+  Age: INT
+  Sex: String
