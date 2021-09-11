@@ -18,7 +18,7 @@ class ShowCard(private val dataParser: IParseData): CommandExecutor {
             mode = args[1]
         }
 
-        return if (sender is Player && sender.hasPermission("cards.display")){
+        return if (sender is Player){
             val player = Bukkit.getPlayer(args[0])
 
             if (player != null){

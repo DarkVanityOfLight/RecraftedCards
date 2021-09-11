@@ -1,0 +1,11 @@
+api-version: 1.16
+depend: [RecraftedCore]
+
+commands:
+  setField:
+    description: Set a specific field in your character card
+    usage: /setField <Field> <Value>
+
+  showCard:
+    description: Display the card of a player
+    usage: <Player>
