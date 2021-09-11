@@ -11,6 +11,11 @@ plugins {
 group 'com.recraftedcivilizations'
 version '1.0-SNAPSHOT'
 
+// plugin.yml values
+def pluginName = 'RecraftedCards'
+def pluginDescription = 'Character Cards for RecraftedCivilizations'
+def pluginAuthors = ["DarkVanityOfLight"]
+
 repositories {
     jcenter()
     mavenCentral()
@@ -33,7 +38,7 @@ dependencies {
 dependencies {
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
     testCompile bukkit()
-    testCompile 'com.github.darkvanityoflight:RecraftedCore:3.+'
+    testCompile 'com.github.recraftedcivilizations:RecraftedCore:3.+'
 }
 
 test {
@@ -42,7 +47,7 @@ test {
 
 dependencies {
     compileOnly spigotApi()
-    compileOnly 'com.github.darkvanityoflight:RecraftedCore:3.+'
+    compileOnly 'com.github.recraftedcivilizations:RecraftedCore:3.+'
     implementation "org.jetbrains.exposed:exposed-core:$exposed_version"
     implementation "org.jetbrains.exposed:exposed-dao:$exposed_version"
     implementation "org.jetbrains.exposed:exposed-jdbc:$exposed_version"
