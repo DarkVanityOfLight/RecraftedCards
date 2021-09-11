@@ -2,9 +2,7 @@ package com.recraftedcivilizations.charactercards
 
 import com.github.darkvanityoflight.recraftedcore.ARecraftedPlugin
 import com.recraftedcivilizations.charactercards.parser.ConfigParser
-import com.recraftedcivilizations.charactercards.parser.DataParser
 import com.recraftedcivilizations.charactercards.parser.datasources.IParseData
-import com.recraftedcivilizations.charactercards.parser.datasources.SQLDataSource
 import com.recraftedcivilizations.charactercards.parser.datasources.YMLDataSource
 
 class CharacterCards : ARecraftedPlugin() {
