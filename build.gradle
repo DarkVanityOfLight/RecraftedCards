@@ -13,13 +13,11 @@ version '1.0-SNAPSHOT'
 
 repositories {
     jcenter()
-    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     mavenCentral()
-    jcenter()
     spigot()
-    maven {
-        url 'https://repo.repsy.io/mvn/darkvanityoflight/darkmods'
-    }
+
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    maven { url 'https://repo.repsy.io/mvn/darkvanityoflight/recraftedcivilizations' }
 }
 
 dependencies {
@@ -35,7 +33,7 @@ dependencies {
 dependencies {
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
     testCompile bukkit()
-    testCompile 'com.github.darkvanityoflight:RecraftedCore:2.+'
+    testCompile 'com.github.darkvanityoflight:RecraftedCore:3.+'
 }
 
 test {
@@ -44,7 +42,7 @@ test {
 
 dependencies {
     compileOnly spigotApi()
-    compileOnly 'com.github.darkvanityoflight:RecraftedCore:2.+'
+    compileOnly 'com.github.darkvanityoflight:RecraftedCore:3.+'
     implementation "org.jetbrains.exposed:exposed-core:$exposed_version"
     implementation "org.jetbrains.exposed:exposed-dao:$exposed_version"
     implementation "org.jetbrains.exposed:exposed-jdbc:$exposed_version"
@@ -55,5 +53,28 @@ dependencies {
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+}
+
+publishing {
+    publications {
+        recraftedCore(MavenPublication) {
+            groupId = 'com.github.recraftedcivilizations'
+            artifactId = pluginName
+            version = this.version
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name = 'RecraftedCivilizations'
+            //credentials(PasswordCredentials)
+            url = 'https://repo.repsy.io/mvn/darkvanityoflight/recraftedcivilizations'
+
+            credentials {
+                username project.RecraftedCivilizationsUsername
+                password project.RecraftedCivilizationsPassword
+            }
+        }
     }
 }
