@@ -40,12 +40,15 @@ class CharacterCard : Card {
 
         // Check for permission nodes that should be mentioned
         val perms = Bukkit.getServer().getPlayer(owner)?.effectivePermissions
-        val permsToDisplay = emptyList<String>().toMutableList()
+        val permsToDisplay = emptyMap<String, String>().toMutableMap()
         if (perms != null){
             for (permission in perms){
-                if (permission.permission.startsWith("charcards.title.")){
-                    val stripedPerm = permission.permission.removePrefix("charcards.title.").replace("_"," ")
-                    permsToDisplay.add(stripedPerm)
+                if (permission.permission.startsWith("charcards.custom")){
+                    val perm = permission.permission.removePrefix("charcards.custom.")
+                    val splited = perm.split(".")
+
+                    permsToDisplay[splited[0].replace("_", " ")] = splited[1].replace("_", " ")
+
                 }
             }
 
@@ -53,7 +56,10 @@ class CharacterCard : Card {
 
 
         var resultString = ChatColor.translateAlternateColorCodes('&',"&b========Character Card========\n")
-        resultString += ChatColor.GREEN.toString() + "Title: ${permsToDisplay.joinToString(" ")}"
+
+        for (key in permsToDisplay.keys){
+            resultString += "${ChatColor.GREEN}$key: ${permsToDisplay[key]}"
+        }
 
         for(key in fields){
             resultString += if(valueMap[key] == null){
