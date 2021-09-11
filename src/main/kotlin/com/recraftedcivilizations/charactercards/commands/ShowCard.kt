@@ -1,6 +1,7 @@
 package com.recraftedcivilizations.charactercards.commands
 
-import com.recraftedcivilizations.charactercards.parser.DataParser
+import com.recraftedcivilizations.charactercards.CharacterCards
+import com.recraftedcivilizations.charactercards.parser.datasources.IParseData
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
@@ -8,20 +9,22 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class ShowCard(private val dataParser: DataParser): CommandExecutor {
-
+class ShowCard(private val dataParser: IParseData): CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
+
+        var mode = CharacterCards.instance!!.configParser.defaultMode
+        if(args.size > 1){
+            mode = args[1]
+        }
+
         return if (sender is Player && sender.hasPermission("cards.display")){
             val player = Bukkit.getPlayer(args[0])
             if (player != null){
-                val card = dataParser.getCard(player)
-                if (card != null) {
-                    card.display(player, args[1])
-                }else{
-                    sender.sendMessage("${ChatColor.RED}This player does not have a Character Card yet")
-                }
+                val card = dataParser.getCard(player, CharacterCards.instance!!.configParser.fields)
+                card.display(player, mode)
                 true
+
             }else{
                 sender.sendMessage("${ChatColor.RED}Could not find the player ${args[0]}.")
                 false

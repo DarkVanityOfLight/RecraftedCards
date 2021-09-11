@@ -1,12 +1,11 @@
 package com.recraftedcivilizations.charactercards.commands
 
 import com.recraftedcivilizations.charactercards.CharacterCards
-import com.recraftedcivilizations.charactercards.parser.DataParser
-import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 
 /**
  * @author DarkVanityOfLight
@@ -15,42 +14,22 @@ import org.bukkit.command.CommandSender
 class SetField: CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
 
-        var playerName = args[0]
-        if (playerName == ""){ playerName = sender.name }
+        if (sender !is Player){ sender.sendMessage("Uga buga console man!!"); return true }
 
-        val field = args[1]
-        val value = args[2]
+        val field = args[0]
+        val args = args.toMutableList()
+        args.removeFirst()
 
-        val player = Bukkit.getPlayer(playerName)
-        if(player == null){ sender.sendMessage("${ChatColor.RED}There is no such player please try again with a valid player"); return false }
+        val value = args.joinToString(" ")
 
-        val cardToModify = CharacterCards.instance!!.dataParser.getCard(player,
-            CharacterCards.instance!!.configParser.fields!!
-        )
-        if(cardToModify == null){ sender.sendMessage("${ChatColor.RED}This player does not have a Character card yet"); return false }
-
-        if (sender.hasPermission("cards.modify" ) || sender == cardToModify.owner){
-            // Make sure the arguments fit our needs
-            // Check that the field to set is in our field map
-            if(field !in cardToModify.fieldMap.keys){ sender.sendMessage("${ChatColor.RED}There is no such field in the Character Cards"); return false }
-            // Check that there is a value to be set
-            if (value == ""){ sender.sendMessage("${ChatColor.RED}Please specify a value to be set"); return false }
+        val cardToModify = CharacterCards.instance!!.dataParser.getCard(sender, CharacterCards.instance!!.configParser.fields)
 
 
-            // Get the field type to set and throw an error if the field does not exist
-            val fieldToSetType = cardToModify.fieldMap[field] ?: error("Field passed check but is not in fieldMap, please contact your dev")
-            when {
-                fieldToSetType.convert(value) != null -> { val toSetValue = fieldToSetType.convert(value) }
-                fieldToSetType.cast(value) != null -> { val toSetValue = fieldToSetType.cast(value) }
-                else -> { sender.sendMessage("${ChatColor.RED}The specified value is not the same type as this field requires, you need to specify a ${fieldToSetType.name} for example ${fieldToSetType.exampleVal}"); return false }
-            }
+        if (field !in cardToModify.fields){ sender.sendMessage("${ChatColor.RED}There is no such field as $field in the Character Cards"); return false }
 
-            cardToModify.setFieldValue(field, value)
-            CharacterCards.instance!!.dataParser.setCard(cardToModify.owner, cardToModify)
-            return true
-        }else{
-            sender.sendMessage("Sry console man you can't do that, if you need this feature contact your dev")
-            return false
-        }
+        cardToModify.setFieldValue(field, value)
+        CharacterCards.instance!!.dataParser.setCard(cardToModify)
+
+        return true
     }
 }
