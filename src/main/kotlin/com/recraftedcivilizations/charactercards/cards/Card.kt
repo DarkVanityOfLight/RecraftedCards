@@ -45,4 +45,8 @@ abstract class Card : IAmACard{
     override fun getFieldValue(key: String): String? {
         return valueMap[key]
     }
+
+    override fun setFieldValue(key: String, value: String) {
+        valueMap[key] = value
+    }
 }
