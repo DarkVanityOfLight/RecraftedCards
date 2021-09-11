@@ -14,15 +14,14 @@ interface IParseData {
     /**
      * Get a card from the data source
      * @param player The Player which owns the card
-     * @param fieldMap A map with all required fields and the type of the field
+     * @param fields A list with all required fields and the type of the field
      * @return returns a character card or null if none is found
      */
-    fun getCard(player: Player, fieldMap: Map<String, SupportedTypes>): CharacterCard?
+    fun getCard(player: Player, fields: List<String>): CharacterCard
 
     /**
      * Set a card for a player
-     * @param player The owner of the card
      * @param card The card to set
      */
-    fun setCard(player: Player, card: Card)
+    fun setCard(card: Card)
 }

@@ -2,32 +2,27 @@ package com.recraftedcivilizations.charactercards.parser.datasources
 
 import com.recraftedcivilizations.charactercards.cards.Card
 import com.recraftedcivilizations.charactercards.cards.CharacterCard
-import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
 import java.io.File
 
+
 class YMLDataSource(override val dataURI: String) : IParseData {
-   private val dataFile: YamlConfiguration
+   private val dataFile: YamlConfiguration = YamlConfiguration.loadConfiguration(File(dataURI))
 
-    init {
-        dataFile = YamlConfiguration.loadConfiguration(File(dataURI))
-    }
+    override fun getCard(player: Player, fields: List<String>): CharacterCard {
+        val valueMap = mapOf<String, String?>().toMutableMap()
+        val cardSection = dataFile.getConfigurationSection("cards.${player.uniqueId}") ?: return CharacterCard(fields, player)
 
-    override fun getCard(player: Player, fieldMap: Map<String, SupportedTypes>): CharacterCard? {
-        val valueMap = mapOf<String, Any?>().toMutableMap()
-        val cardSection =
-            dataFile.getConfigurationSection("cards.${player.name}") ?: return CharacterCard(fieldMap, player)
-
-        for (key in fieldMap.keys){
+        for (key in fields){
             valueMap[key] = cardSection.getString(key)
         }
 
-        return CharacterCard(fieldMap, valueMap, player)
+        return CharacterCard(fields, valueMap, player)
     }
 
-    override fun setCard(player: Player, card: Card) {
-        val cardSection = dataFile.createSection("cards.${player.name}", card.valueMap)
+    override fun setCard(card: Card) {
+        val cardSection = dataFile.createSection("cards.${card.owner.uniqueId}", card.valueMap)
         dataFile.save(File(dataURI))
 
     }
