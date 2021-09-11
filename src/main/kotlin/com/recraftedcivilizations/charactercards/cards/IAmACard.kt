@@ -12,6 +12,7 @@ import org.bukkit.inventory.Inventory
 interface IAmACard {
     var fields: List<String>
     var valueMap: MutableMap<String, String?>
+    val owner: Player
 
     /**
      * @param key The key for the field you want to have

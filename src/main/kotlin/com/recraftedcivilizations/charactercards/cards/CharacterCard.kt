@@ -12,7 +12,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
 
 class CharacterCard : Card {
-    val owner: Player
+    override val owner: Player
     var GUIMode: Boolean = false
 
 
