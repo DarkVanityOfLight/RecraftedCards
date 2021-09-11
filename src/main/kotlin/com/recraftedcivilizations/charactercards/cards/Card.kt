@@ -6,7 +6,7 @@ package com.recraftedcivilizations.charactercards.cards
  * @author DarkVanityOfLight
  * @constructor Initialize a card using given fields and values, checks the values for their field types
  * @constructor Initialize a card using given fields, null all values
- * @property fieldMap A map with all field names and their type
+ * @property fields A list with all field names and their type
  * @property valueMap A map with all field names and their value
  */
 abstract class Card : IAmACard{
