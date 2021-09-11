@@ -2,8 +2,7 @@ package com.recraftedcivilizations.charactercards.parser.datasources
 
 import com.recraftedcivilizations.charactercards.cards.Card
 import com.recraftedcivilizations.charactercards.cards.CharacterCard
-import com.recraftedcivilizations.charactercards.utils.SupportedTypes
-import org.bukkit.entity.Player
+import org.bukkit.OfflinePlayer
 
 /**
  * A data source which can read and write cards
@@ -17,7 +16,7 @@ interface IParseData {
      * @param fields A list with all required fields and the type of the field
      * @return returns a character card or null if none is found
      */
-    fun getCard(player: Player, fields: List<String>): CharacterCard
+    fun getCard(player: OfflinePlayer, fields: List<String>): CharacterCard
 
     /**
      * Set a card for a player
