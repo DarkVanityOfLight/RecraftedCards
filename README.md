@@ -18,6 +18,13 @@ but this feature is not implemented yet.
 ```yaml
 fields: [field1, field2, field3]
 ```
+### Displaying permission bound titles
+If a player has any permission starting with `charcars.custom` it will be displayed in his card.
+The field name will be defined by the first node after the custom and the value for the field by the second node after
+custom.  
+`Note: More then two node after the custom will break something`  
+_ will be replaced by spaces while parsing the permission, so `charcards.custom.title.King` would be displayed
+as `title: King` and `charcards.custom.skill.basic_blacksmithing` as `skill: basic blacksmithing`.
 
 ### An example config file might look like that
 ```yaml
