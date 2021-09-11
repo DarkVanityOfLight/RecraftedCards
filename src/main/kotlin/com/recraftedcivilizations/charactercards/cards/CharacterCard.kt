@@ -17,17 +17,17 @@ class CharacterCard : Card {
 
 
     /**
-     * @param fieldMap A map with all fields the card should have
+     * @param fields A list with all fields the card should have
      * @param valueMap A map with all values to initialize the card
      */
-    constructor(fieldMap: Map<String, SupportedTypes>, valueMap: Map<String, Any?>, player: Player) : super(fieldMap, valueMap) {
+    constructor(fields: List<String>, valueMap: Map<String, String?>, player: Player) : super(fields, valueMap) {
         this.owner = player
     }
 
     /**
-     * @param fieldMap A map with all fields the card should have
+     * @param fields A list with all fields the card should have
      */
-    constructor(fieldMap: Map<String, SupportedTypes>, player: Player) : super(fieldMap){
+    constructor(fields: List<String>, player: Player) : super(fields){
         this.owner = player
     }
 
@@ -36,11 +36,11 @@ class CharacterCard : Card {
      */
     override fun getChatOutputRepresentation(): String {
         var resultString = ChatColor.translateAlternateColorCodes('&',"&b========Character Card========\n")
-        for(key in fieldMap.keys){
+        for(key in fields){
             resultString += if(valueMap[key] == null){
                 ChatColor.GREEN.toString()  + "$key: Unknown\n"
             }else{
-                ChatColor.GREEN.toString() + "$key: ${valueMap[key].toString()}\n"
+                ChatColor.GREEN.toString() + "$key: ${valueMap[key]}\n"
             }
         }
         resultString += ChatColor.translateAlternateColorCodes('&',"&b==============================")
