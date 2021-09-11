@@ -10,32 +10,20 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
 
 interface IAmACard {
-    var fieldMap: Map<String, SupportedTypes>
-    var valueMap: MutableMap<String, Any?>
-
-
-    /**
-     * @return Returns a map with all fields and their Type
-     */
-    fun getFields() : Map<String, SupportedTypes>
+    var fields: List<String>
+    var valueMap: MutableMap<String, String?>
 
     /**
      * @param key The key for the field you want to have
      * @return    Returns the field value or null if the field does not exist
      */
-    fun getFieldValue(key : String) : Any?
+    fun getFieldValue(key : String) : String?
 
     /**
      * @param key The field to set
      * @param value The value to set
      */
-    fun setFieldValue(key: String, value: Any)
-
-    /**
-     * @param key The key for the field you want to have
-     * @return    Returns the type of the field or null
-     */
-    fun getFieldType(key : String): SupportedTypes?
+    fun setFieldValue(key: String, value: String)
 
     /**
      * @return Returns the output representation for the Card as String
