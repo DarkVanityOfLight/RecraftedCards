@@ -1,6 +1,5 @@
 package com.recraftedcivilizations.charactercards.cards
 
-import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 
 /**
  * Represents a simple card with fields and values
