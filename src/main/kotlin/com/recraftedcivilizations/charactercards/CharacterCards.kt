@@ -1,6 +1,8 @@
 package com.recraftedcivilizations.charactercards
 
 import com.github.darkvanityoflight.recraftedcore.ARecraftedPlugin
+import com.recraftedcivilizations.charactercards.commands.SetField
+import com.recraftedcivilizations.charactercards.commands.ShowCard
 import com.recraftedcivilizations.charactercards.parser.ConfigParser
 import com.recraftedcivilizations.charactercards.parser.datasources.IParseData
 import com.recraftedcivilizations.charactercards.parser.datasources.YMLDataSource
@@ -29,6 +31,9 @@ class CharacterCards : ARecraftedPlugin() {
                 YMLDataSource(this.dataFolder.absolutePath + "data.yml")
             }
         }
+
+        getCommand("setField")!!.setExecutor(SetField())
+        getCommand("showCard")!!.setExecutor(ShowCard(dataParser))
     }
 
     companion object{
