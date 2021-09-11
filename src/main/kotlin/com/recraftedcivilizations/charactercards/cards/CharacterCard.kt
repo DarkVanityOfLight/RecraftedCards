@@ -6,13 +6,14 @@ package com.recraftedcivilizations.charactercards.cards
 
 
 import com.recraftedcivilizations.charactercards.CharacterCards
-import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.ChatColor
+import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
+import java.util.*
 
 class CharacterCard : Card {
-    override val owner: Player
+    override val owner: UUID
     var GUIMode: Boolean = false
 
 
@@ -20,15 +21,15 @@ class CharacterCard : Card {
      * @param fields A list with all fields the card should have
      * @param valueMap A map with all values to initialize the card
      */
-    constructor(fields: List<String>, valueMap: Map<String, String?>, player: Player) : super(fields, valueMap) {
-        this.owner = player
+    constructor(fields: List<String>, valueMap: Map<String, String?>, player: OfflinePlayer) : super(fields, valueMap) {
+        this.owner = player.uniqueId
     }
 
     /**
      * @param fields A list with all fields the card should have
      */
-    constructor(fields: List<String>, player: Player) : super(fields){
-        this.owner = player
+    constructor(fields: List<String>, player: OfflinePlayer) : super(fields){
+        this.owner = player.uniqueId
     }
 
     /**

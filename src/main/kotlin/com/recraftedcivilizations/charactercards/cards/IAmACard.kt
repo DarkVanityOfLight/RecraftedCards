@@ -5,14 +5,14 @@ package com.recraftedcivilizations.charactercards.cards
  */
 
 
-import com.recraftedcivilizations.charactercards.utils.SupportedTypes
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
+import java.util.*
 
 interface IAmACard {
     var fields: List<String>
     var valueMap: MutableMap<String, String?>
-    val owner: Player
+    val owner: UUID
 
     /**
      * @param key The key for the field you want to have
