@@ -38,7 +38,7 @@ class SetCustomField: CommandExecutor{
         val m = args.toMutableList()
         m.removeAt(0)
         m.removeAt(0)
-        val argVal = m.joinToString()
+        val argVal = m.joinToString(" ")
 
         // If there is already smth set on the field we add our new value behind a comma
         val currentVal = cardToModify.valueMap[args[1]]

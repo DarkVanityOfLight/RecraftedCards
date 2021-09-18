@@ -32,7 +32,7 @@ class RemoveCustomField: CommandExecutor {
         val m = args.toMutableList()
         m.removeAt(0)
         m.removeAt(0)
-        val argVal = m.joinToString()
+        val argVal = m.joinToString(" ")
 
         val currentFieldValue = cardToModify.valueMap[args[1]]
         // Split all fields so we can remove the one that we want to remove
