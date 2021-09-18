@@ -24,6 +24,10 @@ class SetCustomField: CommandExecutor{
      */
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
 
+        if (args.size < 3){
+            return false
+        }
+
         val player = Bukkit.getPlayer(args[0])
 
         if (player == null){ sender.sendMessage("${ChatColor.RED}The player ${args[0]} doesn't exist"); return true }
