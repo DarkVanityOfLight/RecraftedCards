@@ -14,7 +14,7 @@ class YMLDataSource(override val dataURI: String) : IParseData {
         val valueMap = mapOf<String, String?>().toMutableMap()
         val cardSection = dataFile.getConfigurationSection("cards.${player.uniqueId}") ?: return CharacterCard(fields, player)
 
-        for (key in fields){
+        for(key in cardSection.getKeys(false)){
             valueMap[key] = cardSection.getString(key)
         }
 
