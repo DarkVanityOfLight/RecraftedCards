@@ -26,6 +26,20 @@ custom.
 _ will be replaced by spaces while parsing the permission, so `charcards.custom.title.King` would be displayed
 as `title: King` and `charcards.custom.skill.basic_blacksmithing` as `skill: basic blacksmithing`.
 
+### Adding custom fields per command
+You can add custom field value pairs to a character card, to do this 
+you will require the `charcards.editcustom` permission. With this permission
+you can use the `/addCustomField` and `/removeCustomField` commands.  
+To add a custom field simpy type `/addCustomField` followed by the player name
+then the field you want to set and then the value the field should have.  
+`Example: /addCustomField Brotdosenterror_ Title King`  
+If you add the custom field more than once both values will be displayed.
+To remove a value from the field again use the `/removeCustomField` command 
+folowed by the player name the field and the value to remove.  
+`Example: /removeCustomField Brotdosenterror_ Title King`  
+
+
+
 ### An example config file might look like that
 ```yaml
 defaultMode: TEXT
