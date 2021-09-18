@@ -1,6 +1,11 @@
 api-version: 1.16
 depend: [RecraftedCore]
 
+permissions:
+  charcards.editcustom:
+    description: Add/Delete custom fields of character cards
+    default: false
+
 commands:
   setField:
     description: Set a specific field in your character card
@@ -8,4 +13,14 @@ commands:
 
   showCard:
     description: Display the card of a player
-    usage: <Player>
+    usage: /showCard <Player>
+
+  addCustomField:
+    description: Set a custom field for a player
+    usage: /addCustomField <Player> <FieldName> <Field> <Value>
+    permission: charcards.editcustom
+
+  removeCustomField:
+    description: Remove a custom field for a player
+    usage: /removeCustomField <Player> FieldName> <Field> <Value>
+    permission: charcards.editcustom
