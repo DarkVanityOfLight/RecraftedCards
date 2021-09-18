@@ -61,7 +61,7 @@ class CharacterCard : Card {
             resultString += "${ChatColor.GREEN}$key: ${permsToDisplay[key]}"
         }
 
-        for(key in configFields){
+        for(key in valueMap.keys){
             resultString += if(valueMap[key] == null){
                 ChatColor.GREEN.toString()  + "$key: Unknown\n"
             }else{
