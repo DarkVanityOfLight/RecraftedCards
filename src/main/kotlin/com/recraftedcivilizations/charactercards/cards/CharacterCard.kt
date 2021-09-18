@@ -62,11 +62,18 @@ class CharacterCard : Card {
         }
 
         for(key in valueMap.keys){
-            resultString += if(valueMap[key] == null){
-                ChatColor.GREEN.toString()  + "$key: Unknown\n"
+            if(key in configFields){
+                resultString += if(valueMap[key] == null){
+                    ChatColor.GREEN.toString()  + "$key: Unknown\n"
+                }else{
+                    ChatColor.GREEN.toString() + "$key: ${valueMap[key]}\n"
+                }
             }else{
-                ChatColor.GREEN.toString() + "$key: ${valueMap[key]}\n"
+                 if(valueMap[key] != null){
+                     resultString += "${ChatColor.GREEN}$key: Unknown\n"
+                }
             }
+
         }
         resultString += ChatColor.translateAlternateColorCodes('&',"&b==============================")
         return resultString
