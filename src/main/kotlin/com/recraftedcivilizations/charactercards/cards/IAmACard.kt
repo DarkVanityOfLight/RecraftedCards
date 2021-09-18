@@ -10,7 +10,7 @@ import org.bukkit.inventory.Inventory
 import java.util.*
 
 interface IAmACard {
-    var fields: List<String>
+    var configFields: List<String>
     var valueMap: MutableMap<String, String?>
     val owner: UUID
 

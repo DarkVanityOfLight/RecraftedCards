@@ -6,34 +6,34 @@ package com.recraftedcivilizations.charactercards.cards
  * @author DarkVanityOfLight
  * @constructor Initialize a card using given fields and values, checks the values for their field types
  * @constructor Initialize a card using given fields, null all values
- * @property fields A list with all field names and their type
+ * @property configFields A list with all field names and their type
  * @property valueMap A map with all field names and their value
  */
 abstract class Card : IAmACard{
-    final override var fields: List<String>
+    final override var configFields: List<String>
     final override var valueMap: MutableMap<String, String?>
 
     /**
      * @param fields A list containing all fields the card should have
      * @param valueMap A map with all values to initialize the card
      */
-    constructor(fields: List<String>, valueMap: Map<String, String?>){
-            this.fields = fields
+    constructor(configFields: List<String>, valueMap: Map<String, String?>){
+            this.configFields = configFields
             this.valueMap = valueMap.toMutableMap()
     }
 
     /**
      * @param fields A list with all fields the card should have
      */
-    constructor(fields: List<String>){
+    constructor(configFields: List<String>){
 
         val valueMap = emptyMap<String, String?>().toMutableMap()
-        for(key in fields){
+        for(key in configFields){
             valueMap[key] =  null
         }
 
         this.valueMap = valueMap
-        this.fields = fields
+        this.configFields = configFields
     }
 
     /**

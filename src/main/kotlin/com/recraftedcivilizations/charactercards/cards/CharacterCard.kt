@@ -19,17 +19,17 @@ class CharacterCard : Card {
 
 
     /**
-     * @param fields A list with all fields the card should have
+     * @param configFields A list with all fields the card should have
      * @param valueMap A map with all values to initialize the card
      */
-    constructor(fields: List<String>, valueMap: Map<String, String?>, player: OfflinePlayer) : super(fields, valueMap) {
+    constructor(configFields: List<String>, valueMap: Map<String, String?>, player: OfflinePlayer) : super(configFields, valueMap) {
         this.owner = player.uniqueId
     }
 
     /**
-     * @param fields A list with all fields the card should have
+     * @param configFields A list with all fields the card should have
      */
-    constructor(fields: List<String>, player: OfflinePlayer) : super(fields){
+    constructor(configFields: List<String>, player: OfflinePlayer) : super(configFields){
         this.owner = player.uniqueId
     }
 
@@ -61,7 +61,7 @@ class CharacterCard : Card {
             resultString += "${ChatColor.GREEN}$key: ${permsToDisplay[key]}"
         }
 
-        for(key in fields){
+        for(key in configFields){
             resultString += if(valueMap[key] == null){
                 ChatColor.GREEN.toString()  + "$key: Unknown\n"
             }else{

@@ -22,7 +22,7 @@ class ShowCard(private val dataParser: IParseData): CommandExecutor {
             val player = Bukkit.getPlayer(args[0])
 
             if (player != null){
-                val card = dataParser.getCard(player, CharacterCards.instance!!.configParser.fields)
+                val card = dataParser.getCard(player, CharacterCards.instance!!.configParser.configFields)
                 card.display(sender, mode)
                 true
 

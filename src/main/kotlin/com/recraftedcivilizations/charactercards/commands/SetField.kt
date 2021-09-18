@@ -22,10 +22,10 @@ class SetField: CommandExecutor {
 
         val value = args.joinToString(" ")
 
-        val cardToModify = CharacterCards.instance!!.dataParser.getCard(sender, CharacterCards.instance!!.configParser.fields)
+        val cardToModify = CharacterCards.instance!!.dataParser.getCard(sender, CharacterCards.instance!!.configParser.configFields)
 
 
-        if (field !in cardToModify.fields){ sender.sendMessage("${ChatColor.RED}There is no such field as $field in the Character Cards"); return false }
+        if (field !in cardToModify.configFields){ sender.sendMessage("${ChatColor.RED}There is no such field as $field in the Character Cards"); return false }
 
         cardToModify.setFieldValue(field, value)
         CharacterCards.instance!!.dataParser.setCard(cardToModify)
