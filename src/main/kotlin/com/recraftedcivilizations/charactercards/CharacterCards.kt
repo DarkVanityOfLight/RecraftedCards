@@ -1,6 +1,8 @@
 package com.recraftedcivilizations.charactercards
 
 import com.github.darkvanityoflight.recraftedcore.ARecraftedPlugin
+import com.recraftedcivilizations.charactercards.commands.RemoveCustomField
+import com.recraftedcivilizations.charactercards.commands.SetCustomField
 import com.recraftedcivilizations.charactercards.commands.SetField
 import com.recraftedcivilizations.charactercards.commands.ShowCard
 import com.recraftedcivilizations.charactercards.parser.ConfigParser
@@ -34,6 +36,8 @@ class CharacterCards : ARecraftedPlugin() {
 
         getCommand("setField")!!.setExecutor(SetField())
         getCommand("showCard")!!.setExecutor(ShowCard(dataParser))
+        getCommand("addCustomField")!!.setExecutor(SetCustomField())
+        getCommand("removeCustomField")!!.setExecutor(RemoveCustomField())
     }
 
     companion object{
