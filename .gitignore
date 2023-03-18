@@ -1,0 +1,32 @@
+# Compiled class files
+*.class
+
+# Gradle build directory
+/build/
+
+# IntelliJ IDEA files
+.idea/
+/out/
+
+# Gradle files
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+build/
+
+# Maven files
+target/
+
+# Eclipse files
+bin/
+.settings/
+.classpath
+.project
+
+# Minecraft server files
+logs/
+plugins/
+world/
+world_nether/
+world_the_end/
