@@ -22,7 +22,7 @@ class ChatCard(valueMap: MutableMap<String, String>, owner: UUID, ownerDisplayNa
 
         // Iterate over the map and add each field to the output string
         this.valueMap.forEach {
-            entry ->  result += ChatColor.GREEN.toString() + "${entry.key}: "+ if (entry.value == "") {"Unkown"} else {entry.value}
+            entry ->  result += ChatColor.GREEN.toString() + "${entry.key}: "+ if (entry.value == "") {"Unkown"} else {entry.value} + "\n"
         }
 
         result += ChatColor.GREEN.toString() + "========${"=".repeat(this.ownerDisplayName.length)}========"
